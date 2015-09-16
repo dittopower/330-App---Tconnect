@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NoteTaker1.Contacts">
+	<ContentPage.Content>
+		<StackLayout>
+				<ScrollView>
+					<ListView x:Name="NoteListView" RowHeight="80">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="3*"/>
+											<RowDefinition Height="3*"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="2*"/>
+											<ColumnDefinition Width="2*"/>
+										</Grid.ColumnDefinitions>
+
+										<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" HorizontalOptions="CenterAndExpand"/>
+										<Label Text="{Binding titleText}" Grid.Row="0" Grid.Column="1"/>
+										<Label Text="{Binding TimeStamp}" Grid.Row="1" Grid.Column="1"/>
+										<Image Grid.Row="2" Grid.Column="1" Source="socialmedia.jpg" HorizontalOptions="CenterAndExpand"/>
+									</Grid>
+								</ViewCell>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</ScrollView>
+			</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

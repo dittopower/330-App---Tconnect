@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NoteTaker1.EventView">
+	<ContentPage.Content>
+		<StackLayout>
+			<Label Text="In 6 Minutes (not really)" TextColor="Red"/>
+			<Label Text="Cellphase HQ, Level 11 Meeting room 2" TextColor="Silver"/>
+			<Label Text="Meeting will be a discussion about the meeting with Cellcare visiting at 11am. All members of the board are required to attend." />
+			<Label Text="Attendies:" FontSize="Medium"/>
+			<StackLayout>
+				<ScrollView>
+					<ListView x:Name="NoteListView">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="2*"/>
+											<RowDefinition Height="2*"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="1*"/>
+											<ColumnDefinition Width="1*"/>
+										</Grid.ColumnDefinitions>
+										<Label Grid.Row="0" Grid.Column="0" Text="{Binding TimeStamp}"/>
+										<Label Grid.Row="1" Grid.Column="0" Text="{Binding titleText}"/>
+									</Grid>
+								</ViewCell>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</ScrollView>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
