@@ -2,45 +2,24 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Tconnect.Data.ViewModel;
+using Tconnect.Data;
 
 namespace Tconnect
 {
-	public partial class TempMenu : ContentPage
+	public partial class TempMenu : BaseView
 	{
 		public TempMenu ()
 		{
 			InitializeComponent ();
+			base.Init ();
+			BindingContext = App.Locator.TempMenu;
 			Title = "Temporary Menu";
 		}
 
-		protected void ButtonCreateEvent(object sender, EventArgs e)
+		protected void ButtonClicked(object sender, EventArgs e)
 		{
-			Navigation.PushAsync (new CreateEvent ());				
-		}
-
-		protected void ButtonUserAccount(object sender, EventArgs e)
-		{
-			Navigation.PushAsync (new UserAccount ());				
-		}
-
-		protected void ButtonCalendar(object sender, EventArgs e)
-		{
-			Navigation.PushAsync (new Calendar ());				
-		}
-
-		protected void ButtonFeed(object sender, EventArgs e)
-		{
-			Navigation.PushAsync (new Feed ());			
-		}
-
-		protected void ButtonEventView(object sender, EventArgs e)
-		{
-			Navigation.PushAsync (new EventView ());			
-		}
-
-		protected void ButtonContacts(object sender, EventArgs e)
-		{
-			Navigation.PushAsync (new Contacts ());			
+			Navigation.PushAsync (new CreateEvent ());
 		}
 	}
 }

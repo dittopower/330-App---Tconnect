@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Tconnect.TempMenu">
 	<StackLayout>
 		<ScrollView>
 			<StackLayout>
-				<Button Text = "Feed" Clicked="ButtonFeed"/>
-				<Button Text = "Create Event" Clicked="ButtonCreateEvent"/>
-				<Button Text = "View Event" Clicked="ButtonEventView"/>
-				<Button Text = "User Account" Clicked="ButtonUserAccount"/>
-				<Button Text = "Calendar" Clicked="ButtonCalendar"/>
-				<Button Text = "Contacts" Clicked="ButtonContacts"/>
+				<Button Text = "Feed" Command = "{Binding EventsViewCommand}" />
+				<Button Text = "Create Event" Command = "{Binding NewEventCommand}" />
+				<!--<Button Text = "View Event" Command = "{Binding NewNoteCommand}" />
+				<Button Text = "User Account" Command = "{Binding NewNoteCommand}" />
+				<Button Text = "Calendar" Command = "{Binding NewNoteCommand}" />
+				<Button Text = "Contacts" Command = "{Binding NewNoteCommand}" />-->
 			</StackLayout>
 		</ScrollView>
 	</StackLayout>
-</ContentPage>
+</BaseView>

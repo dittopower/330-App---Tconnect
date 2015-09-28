@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Tconnect.CreateEvent">
 	<StackLayout Padding = "0,0,0,0">
-		<Entry x:Name = "NameEntry" Placeholder="Name"/>
-		<Entry x:Name = "DateEntry" Placeholder="Date/Time"/>
-		<Entry x:Name = "LocEntry" Placeholder="Location"/>
-		<Entry x:Name = "DescEntry" Placeholder="Description"/>
+		<Entry x:Name = "TitleEntry" Placeholder="Name" Text="{Binding NoteTitle}"/>
+		<Entry x:Name = "DateEntry" Placeholder="Date/Time" Text="{Binding NoteDate}"/>
+		<Entry x:Name = "LocEntry" Placeholder="Location" Text="{Binding NoteLocationText}"/>
+		<Entry x:Name = "DetailsEditor" Placeholder="Description" Text="{Binding EventDetails}"/>
+		<Button HorizontalOptions = "CenterAndExpand" Text="Save" Command = "{Binding SaveNoteCommand}"/>
 		<Label Text="Invite List"/>
 		<StackLayout>
 			<ScrollView>
@@ -33,4 +34,4 @@ x:Class="Tconnect.CreateEvent">
 			</ScrollView>
 		</StackLayout>
 	</StackLayout>
-</ContentPage>
+</BaseView>

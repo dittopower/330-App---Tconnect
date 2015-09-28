@@ -2,26 +2,33 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Tconnect.Data.ViewModel;
+using Tconnect.Data;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Tconnect
 {
-	public partial class Feed : ContentPage
+	public partial class Feed : BaseView
 	{
 		public Feed ()
 		{
 			InitializeComponent ();
-
-			Title = "Home/Feed";
-
-			var noteList = new List<Notes> ();
-
-			noteList.Add (new Notes ("Meeting with Cellcare"){ TimeStamp = "11:00 am"});
-			noteList.Add (new Notes ("Recollection Meeting"){ TimeStamp = "12:00 pm" });
-			noteList.Add (new Notes ("Visit Brisbane branch"){ TimeStamp = "1:00 pm"});
-			noteList.Add (new Notes ("Visit Carindale branch"){ TimeStamp = "2:30 pm"});
-
-			NoteListView.ItemsSource = noteList;
+			base.Init ();
+			BindingContext = App.Locator.NoteList;
 		}
+
+		protected void ButtonClicked(object sender, EventArgs e)
+		{
+			Navigation.PushAsync (new CreateEvent ());
+		}
+
+		protected override void OnAppearing ()
+		{
+			base.OnAppearing ();
+			var vm = ServiceLocator.Current.GetInstance<EventViewViewModel> ();
+			vm.OnAppearing ();
+		}
+
 	}
 }
 

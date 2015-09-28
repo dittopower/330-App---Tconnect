@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.Feed">
-	<ContentPage.Content>
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.Feed">
 		<StackLayout>
 			<Label Text="Board Meeting" FontSize="Large"/>
 			<Label Text="9:00am" FontSize="Medium"/>
 			<Label Text="Meeting will be a discussion about the meeting with Cellcare visiting at 11am. All members of the board are required to attend." />
 			<StackLayout>
 				<ScrollView>
-					<ListView x:Name="NoteListView">
+					<ListView x:Name="NoteListView" ItemsSource="{Binding EventView, Mode=TwoWay}">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>
@@ -20,8 +19,10 @@
 											<ColumnDefinition Width="1*"/>
 											<ColumnDefinition Width="1*"/>
 										</Grid.ColumnDefinitions>
-										<Label Grid.Row="0" Grid.Column="0" Text="{Binding TimeStamp}"/>
-										<Label Grid.Row="1" Grid.Column="0" Text="{Binding titleText}"/>
+										<Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding TimeStamp}" TextColor ="White"/>
+										<Label Grid.Row="1" Grid.Column="1" Text="{Binding LocationText}" TextColor ="White"/>
+										<Label Grid.Row="0" Grid.Column="1" Text="{Binding titleText}" TextColor ="White"/>
+										<Label Grid.Row="1" Grid.Column="0" Text="{Binding NoteDetail}" TextColor ="White"/>
 									</Grid>
 								</ViewCell>
 							</DataTemplate>
@@ -29,6 +30,6 @@
 					</ListView>
 				</ScrollView>
 			</StackLayout>
+			<Button Text = "New Event" Command = "{Binding NewNoteCommand}" />
 		</StackLayout>
-	</ContentPage.Content>
-</ContentPage>
+</BaseView>
