@@ -25,7 +25,7 @@ namespace Tconnect.Data.ViewModel
 
 		public ICommand NewEventCommand { get; private set; }
 		public ICommand EventsViewCommand { get; private set; }
-	//	public ICommand NewEventCommand { get; private set; }
+		public ICommand CalendarCommand { get; private set; }
 	//	public ICommand NewEventCommand { get; private set; }
 	//	public ICommand NewEventCommand { get; private set; }
 	//	public ICommand NewEventCommand { get; private set; }
@@ -39,7 +39,7 @@ namespace Tconnect.Data.ViewModel
 
 			NewEventCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
 			EventsViewCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventViewPageKey));
-			//NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
+			CalendarCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.CalendarPageKey));
 			//NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
 			//NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
 			//NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));

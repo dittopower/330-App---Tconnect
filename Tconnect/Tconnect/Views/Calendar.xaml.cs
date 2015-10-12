@@ -2,26 +2,34 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Tconnect.Data.ViewModel;
+using Tconnect.Data;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Tconnect
 {
-	public partial class Calendar : ContentPage
+	public partial class Calendar : BaseView
 	{
 		public Calendar ()
 		{
 			InitializeComponent ();
-
+			base.Init ();
+			BindingContext = App.Locator.NoteList;
 			Title = "Calendar";
-
-			var noteList = new List<Notes> ();
-
-			noteList.Add (new Notes ("Meeting with Cellcare"){ TimeStamp = "11:00 am"});
-			noteList.Add (new Notes ("Recollection Meeting"){ TimeStamp = "12:00 pm" });
-			noteList.Add (new Notes ("Visit Brisbane branch"){ TimeStamp = "1:00 pm"});
-
-			NoteListView.ItemsSource = noteList;
-
 		}
+
+		protected void ButtonClicked(object sender, EventArgs e)
+		{
+			Navigation.PushAsync (new CreateEvent ());
+		}
+
+		protected override void OnAppearing ()
+		{
+			base.OnAppearing ();
+			var vm = ServiceLocator.Current.GetInstance<CalendarViewModel> ();
+			vm.OnAppearing ();
+		}
+
 
 	}
 }

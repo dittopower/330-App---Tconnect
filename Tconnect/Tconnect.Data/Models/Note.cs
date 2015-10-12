@@ -5,7 +5,7 @@ namespace Tconnect.Data
 	public class Note
 	{
 		public string titleText { get; set; }
-		public string TimeStamp { get; set; }
+		public DateTime TimeStamp { get; set; }
 		public string NoteDetail { get; set; }
 		public string LocationText { get; set; }
 
@@ -17,7 +17,7 @@ namespace Tconnect.Data
 		/// <param name="titleText">Title text.</param>
 		/// <param name="timeStamp">Time stamp.</param>
 		/// <param name="actionRequiredFlag">Action required flag.</param>
-		public Note (string titleText, string timeStamp = "", string locationText = "", string noteDetail = "")
+		public Note (string titleText, DateTime timeStamp, string locationText = "", string noteDetail = "")
 		{
 			this.titleText = titleText;
 			TimeStamp = timeStamp;

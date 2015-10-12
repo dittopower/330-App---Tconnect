@@ -19,7 +19,7 @@ namespace Tconnect.Data.ViewModel
 	/// See http://www.galasoft.ch/mvvm
 	/// </para>
 	/// </summary>
-	public class EventViewViewModel : ViewModelBase
+	public class CalendarViewModel : ViewModelBase
 	{
 		private IMyNavigationService navigationService;
 
@@ -36,18 +36,9 @@ namespace Tconnect.Data.ViewModel
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
 		/// </summary>
-		public EventViewViewModel(IMyNavigationService navigationService)
+		public CalendarViewModel(IMyNavigationService navigationService)
 		{
 			this.navigationService = navigationService;
-			////if (IsInDesignMode)
-			////{
-			////    // Code runs in Blend --> create design time data.
-			////}
-			////else
-			////{
-			////    // Code runs "for real"
-			////}
-
 			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
 		}
 

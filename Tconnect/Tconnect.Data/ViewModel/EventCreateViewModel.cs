@@ -20,9 +20,9 @@ namespace Tconnect.Data
 		}
 
 
-		private String noteDate;
+		private DateTime noteDate;
 		//make this a date at some point
-		public String NoteDate
+		public DateTime NoteDate
 		{
 			get { return noteDate; }
 			set { noteDate = value;

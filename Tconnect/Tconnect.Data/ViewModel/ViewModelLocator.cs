@@ -27,6 +27,7 @@ namespace Tconnect.Data.ViewModel
 		public const string EventViewPageKey = "EventViewPage";
 		public const string EventCreatePageKey = "EventCreatePage";
 		public const string TempMenuKey = "TempMenuPage";
+		public const string CalendarPageKey = "CalendarPage";
 		/// <summary>
 		/// Initializes a new instance of the ViewModelLocator class.
 		/// </summary>
@@ -34,20 +35,9 @@ namespace Tconnect.Data.ViewModel
 		{
 			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-			////if (ViewModelBase.IsInDesignModeStatic)
-			////{
-			////    // Create design time view services and models
-			////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-			////}
-			////else
-			////{
-			////    // Create run time view services and models
-			////    SimpleIoc.Default.Register<IDataService, DataService>();
-			////}
-
-			SimpleIoc.Default.Register<EventViewViewModel>(() => 
+			SimpleIoc.Default.Register<MainFeedViewModel>(() => 
 				{
-					return new EventViewViewModel(
+					return new MainFeedViewModel(
 						SimpleIoc.Default.GetInstance<IMyNavigationService>()
 					);
 				});
@@ -63,13 +53,19 @@ namespace Tconnect.Data.ViewModel
 						SimpleIoc.Default.GetInstance<IMyNavigationService>()
 					);
 				});
+			SimpleIoc.Default.Register<CalendarViewModel>(() => 
+				{
+					return new CalendarViewModel(
+						SimpleIoc.Default.GetInstance<IMyNavigationService>()
+					);
+				});
 		}
 
-		public EventViewViewModel NoteList
+		public MainFeedViewModel NoteList
 		{
 			get
 			{
-				return ServiceLocator.Current.GetInstance<EventViewViewModel>();
+				return ServiceLocator.Current.GetInstance<MainFeedViewModel>();
 			}
 		}
 
@@ -86,6 +82,14 @@ namespace Tconnect.Data.ViewModel
 			get
 			{
 				return ServiceLocator.Current.GetInstance<TempMenuViewModel>();
+			}
+		}
+
+		public CalendarViewModel Calendar
+		{
+			get
+			{
+				return ServiceLocator.Current.GetInstance<CalendarViewModel>();
 			}
 		}
 

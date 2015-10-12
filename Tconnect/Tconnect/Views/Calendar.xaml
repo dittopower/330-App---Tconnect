@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<BaseView xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Tconnect.Calendar">
 	<StackLayout Padding = "0,0,0,0">
 		<Image Source="calendarr.jpg" HorizontalOptions="Fill"/>
 		<StackLayout>
 			<ScrollView>
-				<ListView x:Name="NoteListView">
+				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView, Mode=TwoWay}">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -29,4 +29,4 @@ x:Class="Tconnect.Calendar">
 			</ScrollView>
 		</StackLayout>
 	</StackLayout>
-</ContentPage>
+</BaseView>

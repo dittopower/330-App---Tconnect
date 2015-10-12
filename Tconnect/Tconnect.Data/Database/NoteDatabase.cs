@@ -37,6 +37,16 @@ namespace Tconnect.Data
 			return database.Table<Note> ().First (t => t.titleText == key); 
 		}
 
+		public Note NextNote(){
+			return database.Table<Note> ().Where (t => t.TimeStamp >= DateTime.Now).OrderBy (t => t.TimeStamp).First(); //doesn't really work atm.
+		}
+
+		public List<Note> FutureNotes(){
+			var items = database.Table<Note> ().Where (t => t.TimeStamp >= DateTime.Now).OrderBy (t => t.TimeStamp).Skip(1).ToList<Note>();
+
+			return items;
+		}
+
 	}
 }
 

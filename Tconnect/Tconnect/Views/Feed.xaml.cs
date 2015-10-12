@@ -25,7 +25,7 @@ namespace Tconnect
 		protected override void OnAppearing ()
 		{
 			base.OnAppearing ();
-			var vm = ServiceLocator.Current.GetInstance<EventViewViewModel> ();
+			var vm = ServiceLocator.Current.GetInstance<MainFeedViewModel> ();
 			vm.OnAppearing ();
 		}
 
