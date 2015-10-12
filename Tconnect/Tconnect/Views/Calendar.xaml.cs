@@ -14,7 +14,7 @@ namespace Tconnect
 		{
 			InitializeComponent ();
 			base.Init ();
-			BindingContext = App.Locator.NoteList;
+			BindingContext = App.Locator.Calendar;
 			Title = "Calendar";
 		}
 

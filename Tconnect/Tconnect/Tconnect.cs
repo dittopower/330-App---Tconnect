@@ -51,6 +51,8 @@ namespace Tconnect
 			nav.Configure (ViewModelLocator.EventCreatePageKey, typeof(CreateEvent));
 			nav.Configure (ViewModelLocator.CalendarPageKey, typeof(Calendar));
 			nav.Configure (ViewModelLocator.TempMenuKey, typeof(TempMenu));
+			nav.Configure (ViewModelLocator.UserAccountPageKey, typeof(UserAccount));
+			nav.Configure (ViewModelLocator.ContactsPageKey, typeof(Contacts));
 			SimpleIoc.Default.Register<IMyNavigationService> (()=> nav, true);
 			var navPage = new NavigationPage (new TempMenu ());
 			nav.Initialize (navPage);

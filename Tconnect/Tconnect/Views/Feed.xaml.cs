@@ -14,7 +14,7 @@ namespace Tconnect
 		{
 			InitializeComponent ();
 			base.Init ();
-			BindingContext = App.Locator.NoteList;
+			BindingContext = App.Locator.Feed;
 		}
 
 		protected void ButtonClicked(object sender, EventArgs e)
