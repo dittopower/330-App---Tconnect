@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.Contacts">
 	<ContentPage.Content>
-		<StackLayout>
+		<StackLayout BackgroundColor="White">
 				<ScrollView>
 					<ListView x:Name="NoteListView" RowHeight="80" ItemsSource="{Binding PeopleView, Mode=TwoWay}">
 						<ListView.ItemTemplate>
 							<DataTemplate>
-								<ViewCell>
-									<Grid>
+								<ViewCell >
+									<Grid Padding="10,10,10,10">
+										<Grid.BackgroundColor>White</Grid.BackgroundColor>
 										<Grid.RowDefinitions>
 											<RowDefinition Height="3*"/>
 											<RowDefinition Height="3*"/>
-											<RowDefinition Height="3*"/>
+											<RowDefinition Height="3*"/>											
 										</Grid.RowDefinitions>
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="2*"/>
@@ -19,10 +20,10 @@
 										</Grid.ColumnDefinitions>
 
 										<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" HorizontalOptions="CenterAndExpand"/>
-										<Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1"/>
-										<Label Text="{Binding Email}" Grid.Row="1" Grid.Column="1"/>
-										<Label Text="{Binding Phone}" Grid.Row="2" Grid.Column="1"/>
-										<Image Grid.Row="3" Grid.Column="1" Source="socialmedia.jpg" HorizontalOptions="CenterAndExpand"/>
+										<Label Text="{Binding Name}" TextColor="Black" Grid.Row="0" Grid.Column="1"/>
+										<Label Text="{Binding Email}" TextColor="Black" Grid.Row="1" Grid.Column="1"/>
+										<Label Text="{Binding Phone}" TextColor="Black" Grid.Row="2" Grid.Column="1"/>
+										<Image Grid.Row="0" Grid.Column="0" Source="socialmedia.jpg" HorizontalOptions="CenterAndExpand"/>
 									</Grid>
 								</ViewCell>
 							</DataTemplate>
