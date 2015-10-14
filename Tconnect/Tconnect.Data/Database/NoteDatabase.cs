@@ -48,7 +48,7 @@ namespace Tconnect.Data
 		}
 
 		public List<Note> FutureNotes(){
-			var items = database.Table<Note> ().Where (t => t.TimeStamp >= DateTime.Now).OrderBy (t => t.TimeStamp).Skip(1).ToList<Note>();
+			var items = database.Table<Note> ().Where (t => t.TimeStamp >= DateTime.Now).OrderBy (t => t.TimeStamp).ToList<Note>();
 
 			return items;
 		}

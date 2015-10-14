@@ -10,17 +10,6 @@ namespace Tconnect
 	{
 		public Mainpage()
 		{
-			//BindingContext = App.Locator.NavPage;
-			Label header = new Label
-			{
-				Text = "Menu",
-				Font = Font.SystemFontOfSize(30, FontAttributes.Bold),
-				HorizontalOptions = LayoutOptions.Center
-			};
-
-			// Assemble an array of NamedColor objects.
-
-			// Create the master page with the ListView.
 			var menuPage = new MenuPage ();
 			menuPage.OnMenuSelect = (categoryPage) => {
 				var navPage = new NavigationPage(categoryPage);//swap to feed when bug is fixed
@@ -50,7 +39,7 @@ namespace Tconnect
 			nav.Configure (ViewModelLocator.ContactsPageKey, typeof(Contacts));
 			//nav.Configure (ViewModelLocator.NavPageKey, typeof(Mainpage));
 			SimpleIoc.Default.Register<IMyNavigationService> (()=> nav, true);
-			var navPage = new NavigationPage (new Calendar ());//swap to feed when bug is fixed
+			var navPage = new NavigationPage (new Feed ());//swap to feed when bug is fixed
 			nav.Initialize (navPage);
 			return navPage;
 		}

@@ -1,25 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.Feed">
-		<StackLayout>
-			<Label Text="{Binding TopNote.titleText}" FontSize="Large"/>
-			<Label Text="{Binding TopNote.TimeStamp}" FontSize="Medium"/>
-			<Label Text="{Binding TopNote.LocationText}" TextColor ="White"/>
-			<Label Text="{Binding TopNote.NoteDetail}" />
-			<StackLayout>
-				<ScrollView>
-					<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<ViewCell>
-									<Grid>
-										<Grid.RowDefinitions>
-											<RowDefinition Height="2*"/>
-											<RowDefinition Height="2*"/>
-										</Grid.RowDefinitions>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="1*"/>
-											<ColumnDefinition Width="1*"/>
-										</Grid.ColumnDefinitions>
+		<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+			<ScrollView>
+				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="2*"/>
+										<RowDefinition Height="2*"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="1*"/>
+										<ColumnDefinition Width="1*"/>
+									</Grid.ColumnDefinitions>
 										<Label Grid.Row="0" Grid.Column="1" Text="{Binding titleText}" TextColor ="White"/>
 										<Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding TimeStamp}" TextColor ="White"/>
 										<Label Grid.Row="1" Grid.Column="0" Text="{Binding NoteDetail}" TextColor ="White"/>
@@ -30,7 +25,6 @@
 						</ListView.ItemTemplate>
 					</ListView>
 				</ScrollView>
-			</StackLayout>
 			<Button Text = "New Event" Command = "{Binding NewNoteCommand}" />
 		</StackLayout>
 </BaseView>

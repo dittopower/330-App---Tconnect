@@ -31,14 +31,6 @@ namespace Tconnect.Data.ViewModel
 			}
 		}
 
-		public Note TopNote{
-			get {
-				var database = new NoteDatabase ();
-				var x = database.NextNote ();
-				return x;
-			}
-		}
-
 
 		public ICommand NewNoteCommand { get; private set; }
 		/// <summary>
@@ -52,7 +44,6 @@ namespace Tconnect.Data.ViewModel
 
 		public void OnAppearing(){
 			RaisePropertyChanged (() => EventView);
-			RaisePropertyChanged (() => TopNote);
 		}
 
 	}

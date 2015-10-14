@@ -15,7 +15,6 @@ namespace Tconnect
 				new MyMenuItem("Home",() => new Feed()),
 				new MyMenuItem("Calendar",() =>  new Calendar()),
 				new MyMenuItem("Contacts",() =>  new Contacts()),
-				new MyMenuItem("Temp Create Event",() =>  new CreateEvent()),
 				new MyMenuItem("Profile",() =>  new UserAccount())
 			};
 			menulistView.ItemsSource = mymenu;
