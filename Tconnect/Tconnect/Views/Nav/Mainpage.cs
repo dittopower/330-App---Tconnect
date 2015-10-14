@@ -23,7 +23,9 @@ namespace Tconnect
 			// Create the master page with the ListView.
 			var menuPage = new MenuPage ();
 			menuPage.OnMenuSelect = (categoryPage) => {
-				Detail = new NavigationPage(categoryPage);
+				var navPage = new NavigationPage(categoryPage);//swap to feed when bug is fixed
+				nav.Initialize (navPage);
+				Detail = navPage;
 				IsPresented = false;
 			};
 
