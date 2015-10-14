@@ -15,6 +15,7 @@ namespace Tconnect
 			InitializeComponent ();
 			base.Init ();
 			BindingContext = App.Locator.Feed;
+			Title = "Home Feed";
 		}
 
 		protected void ButtonClicked(object sender, EventArgs e)

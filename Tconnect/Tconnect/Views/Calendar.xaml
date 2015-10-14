@@ -6,7 +6,7 @@ x:Class="Tconnect.Calendar">
 		<Image Source="calendarr.jpg" HorizontalOptions="Fill"/>
 		<StackLayout>
 			<ScrollView>
-				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView, Mode=TwoWay}">
+				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>

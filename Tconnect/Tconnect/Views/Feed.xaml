@@ -7,7 +7,7 @@
 			<Label Text="{Binding TopNote.NoteDetail}" />
 			<StackLayout>
 				<ScrollView>
-					<ListView x:Name="NoteListView" ItemsSource="{Binding EventView, Mode=TwoWay}">
+					<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>

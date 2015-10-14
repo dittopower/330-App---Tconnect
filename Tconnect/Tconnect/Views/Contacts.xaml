@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="White">
 				<ScrollView>
-					<ListView x:Name="NoteListView" RowHeight="80" ItemsSource="{Binding PeopleView, Mode=TwoWay}">
+					<ListView x:Name="NoteListView" RowHeight="80" ItemsSource="{Binding PeopleView}">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell >
