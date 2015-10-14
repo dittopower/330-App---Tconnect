@@ -13,8 +13,8 @@ namespace Tconnect
 		public App ()
 		{
 			// The root page of your application
-			//MainPage = new NavigationPage(new TempMenu());
-			MainPage = GetMainPage();
+			MainPage = new Mainpage();
+			//MainPage = GetMainPage();
 		}
 
 		protected override void OnStart ()
@@ -33,7 +33,7 @@ namespace Tconnect
 		}
 
 		private static ViewModelLocator _locator;
-		private static NavigationService nav;
+		//private static NavigationService nav;
 
 		public static ViewModelLocator Locator
 		{
@@ -43,7 +43,7 @@ namespace Tconnect
 			}
 		}
 
-
+		/*
 		public Page GetMainPage()
 		{
 			nav = new NavigationService ();
@@ -53,11 +53,12 @@ namespace Tconnect
 			nav.Configure (ViewModelLocator.TempMenuKey, typeof(TempMenu));
 			nav.Configure (ViewModelLocator.UserAccountPageKey, typeof(UserAccount));
 			nav.Configure (ViewModelLocator.ContactsPageKey, typeof(Contacts));
+			nav.Configure (ViewModelLocator.NavPageKey, typeof(Mainpage));
 			SimpleIoc.Default.Register<IMyNavigationService> (()=> nav, true);
-			var navPage = new NavigationPage (new TempMenu ());
+			var navPage = new NavigationPage (new Mainpage ());
 			nav.Initialize (navPage);
 			return navPage;
-		}
+		}*/
 	}
 }
 

@@ -30,6 +30,7 @@ namespace Tconnect.Data.ViewModel
 		public const string CalendarPageKey = "CalendarPage";
 		public const string UserAccountPageKey = "UserAccountPage";
 		public const string ContactsPageKey = "ContactsPage";
+		public const string NavPageKey = "NavPage";
 		/// <summary>
 		/// Initializes a new instance of the ViewModelLocator class.
 		/// </summary>
@@ -73,6 +74,12 @@ namespace Tconnect.Data.ViewModel
 						SimpleIoc.Default.GetInstance<IMyNavigationService>()
 					);
 				});
+			/*SimpleIoc.Default.Register<NavPageViewModel>(() => 
+				{
+					return new NavPageViewModel(
+						SimpleIoc.Default.GetInstance<IMyNavigationService>()
+					);
+				});*/
 		}
 
 		public MainFeedViewModel Feed
@@ -122,6 +129,14 @@ namespace Tconnect.Data.ViewModel
 				return ServiceLocator.Current.GetInstance<ContactsViewModel>();
 			}
 		}
+
+		/*public NavPageViewModel NavPage
+		{
+			get
+			{
+				return ServiceLocator.Current.GetInstance<NavPageViewModel>();
+			}
+		}*/
 
 		public static void Cleanup()
 		{
