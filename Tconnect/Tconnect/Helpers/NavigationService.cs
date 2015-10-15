@@ -238,6 +238,36 @@ namespace Tconnect
 			NavigationPage.SetHasNavigationBar (CurrentPage, visible);
 
 		}
+
+	//Nav page
+
+		public void NavigateToPage(Page page, bool modal = false)
+		{
+			try
+			{
+
+				lock (_pagesByKey)
+				{
+						if (modal)
+						{
+							wasModal = true;
+							_navigation.Navigation.PushModalAsync(page);
+							NavigationPage.SetHasNavigationBar(_navigation, true);
+						}
+						else
+						{
+							wasModal = false;
+							_navigation.Navigation.PushAsync(page);
+						}
+
+				}
+			}
+			catch (Exception e)
+			{
+
+				throw e;
+			}
+		}
 	}
 }
 

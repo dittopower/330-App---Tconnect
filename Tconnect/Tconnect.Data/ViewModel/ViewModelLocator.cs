@@ -24,7 +24,7 @@ namespace Tconnect.Data.ViewModel
 	/// </summary>
 	public class ViewModelLocator
 	{
-		public const string EventViewPageKey = "EventViewPage";
+		public const string FeedPageKey = "FeedPage";
 		public const string EventCreatePageKey = "EventCreatePage";
 		public const string TempMenuKey = "TempMenuPage";
 		public const string CalendarPageKey = "CalendarPage";

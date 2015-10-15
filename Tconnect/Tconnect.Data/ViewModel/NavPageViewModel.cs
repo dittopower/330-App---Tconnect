@@ -38,7 +38,7 @@ namespace Tconnect.Data.ViewModel
 			this.navigationService = navigationService;
 
 			NewEventCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
-			EventsViewCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventViewPageKey));
+			EventsViewCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.FeedPageKey));
 			CalendarCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.CalendarPageKey));
 			UserAccountCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.UserAccountPageKey));
 			ContactsCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.ContactsPageKey));
