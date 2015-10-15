@@ -36,7 +36,6 @@
     <Compile Include="Models\Note.cs" />
     <Compile Include="Interfaces\IMyNavigationService.cs" />
     <Compile Include="Interfaces\IPageLifeCycleEvents.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Interfaces\ISqlite.cs" />
     <Compile Include="ViewModel\EventCreateViewModel.cs" />

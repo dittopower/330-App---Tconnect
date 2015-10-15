@@ -59,6 +59,26 @@ namespace Tconnect
 			nav.Initialize (navPage);
 			return navPage;
 		}*/
+
+		public static NavigationService nav;
+
+		public static Page GetMainPage()
+		{
+			if (nav == null) {
+				nav = new NavigationService ();
+				nav.Configure (ViewModelLocator.FeedPageKey, typeof(Feed));
+				nav.Configure (ViewModelLocator.EventCreatePageKey, typeof(CreateEvent));
+				nav.Configure (ViewModelLocator.CalendarPageKey, typeof(Calendar));
+				nav.Configure (ViewModelLocator.TempMenuKey, typeof(TempMenu));
+				nav.Configure (ViewModelLocator.UserAccountPageKey, typeof(UserAccount));
+				nav.Configure (ViewModelLocator.ContactsPageKey, typeof(Contacts));
+				//nav.Configure (ViewModelLocator.NavPageKey, typeof(Mainpage));
+				SimpleIoc.Default.Register<IMyNavigationService> (() => nav, true);
+			} 
+			var navPage = new NavigationPage (new Feed ());//swap to feed when bug is fixed
+			nav.Initialize (navPage);
+			return navPage;
+		}
 	}
 }
 

@@ -18,11 +18,6 @@ namespace Tconnect
 			Title = "Home Feed";
 		}
 
-		protected void ButtonClicked(object sender, EventArgs e)
-		{
-			Navigation.PushAsync (new CreateEvent ());
-		}
-
 		protected override void OnAppearing ()
 		{
 			base.OnAppearing ();

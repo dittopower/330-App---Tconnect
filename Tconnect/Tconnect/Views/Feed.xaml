@@ -25,6 +25,6 @@
 						</ListView.ItemTemplate>
 					</ListView>
 				</ScrollView>
-			<Button Text = "New Event" Command = "{Binding NewNoteCommand}" />
+			<Button Text = "+" Command = "{Binding NewNoteCommand}" VerticalOptions="End" HorizontalOptions="End" />
 		</StackLayout>
 </BaseView>

@@ -12,41 +12,26 @@ namespace Tconnect
 		{
 			var menuPage = new MenuPage ();
 			menuPage.OnMenuSelect = (categoryPage) => {
-				var navPage = new NavigationPage(categoryPage);
+				//var navPage = new NavigationPage(categoryPage);
 
-				NavigationPage.SetHasBackButton(navPage,false);
-				nav.NavigateToPage(navPage);
+				NavigationPage.SetHasBackButton(categoryPage,false);
+				App.nav.NavigateToPage(categoryPage);
 
+				//navPage.
+				//Detail.Title = categoryPage.Title;
+				//Detail.Navigation = navPage.Navigation;
 				IsPresented = false;
 			};
 
 			this.Master = menuPage;
-			this.Detail = GetMainPage();
+			this.Detail = App.GetMainPage();
 			// Create the detail page using NamedColorPage and wrap it in a
 
 
 
 		}
 
-		private static NavigationService nav;
 
-		public Page GetMainPage()
-		{
-			if (nav == null) {
-				nav = new NavigationService ();
-				nav.Configure (ViewModelLocator.FeedPageKey, typeof(Feed));
-				nav.Configure (ViewModelLocator.EventCreatePageKey, typeof(CreateEvent));
-				nav.Configure (ViewModelLocator.CalendarPageKey, typeof(Calendar));
-				nav.Configure (ViewModelLocator.TempMenuKey, typeof(TempMenu));
-				nav.Configure (ViewModelLocator.UserAccountPageKey, typeof(UserAccount));
-				nav.Configure (ViewModelLocator.ContactsPageKey, typeof(Contacts));
-				//nav.Configure (ViewModelLocator.NavPageKey, typeof(Mainpage));
-				SimpleIoc.Default.Register<IMyNavigationService> (() => nav, true);
-			} 
-			var navPage = new NavigationPage (new Feed ());//swap to feed when bug is fixed
-			nav.Initialize (navPage);
-			return navPage;
-		}
 	}
 
 }
