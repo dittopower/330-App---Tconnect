@@ -2,26 +2,31 @@
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Tconnect.Calendar">
-	<StackLayout Padding = "0,0,0,0">
+	<StackLayout Padding = "0,0,0,0" BackgroundColor="White"><!--Page background-->
 		<Image Source="calendarr.jpg" HorizontalOptions="Fill"/>
 		<StackLayout>
 			<ScrollView>
-				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}">
+				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}" HasUnevenRows="true"><!--uneven rows fixes display issues-->
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
-								<Grid>
-									<Grid.RowDefinitions>
-										<RowDefinition Height="2*"/>
-										<RowDefinition Height="2*"/>
-									</Grid.RowDefinitions>
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="1*"/>
-										<ColumnDefinition Width="1*"/>
-									</Grid.ColumnDefinitions>
-									<Label Grid.Row="0" Grid.Column="0" Text="{Binding TimeStamp}"/>
-									<Label Grid.Row="1" Grid.Column="0" Text="{Binding titleText}"/>
-								</Grid>
+								<StackLayout Padding="5,6,5,0"><!--Spaces out the cards-->
+									<StackLayout Padding = "0.5,0.5,1,2" BackgroundColor="#2000"><!--Creates the shadow-->
+										<Grid BackgroundColor="White" Padding="5,5,5,5"><!--non shadow background-->
+											<Grid.RowDefinitions>
+												<RowDefinition Height="2*"/>
+												<RowDefinition Height="2*"/>
+											</Grid.RowDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="2*"/>
+												<ColumnDefinition Width="2*"/>
+											</Grid.ColumnDefinitions>
+											<Label Grid.Row="0" Grid.Column="0" Text="{Binding titleText}" TextColor="Black"/>
+											<Label Grid.Row="0" Grid.Column="1" Text="{Binding TimeStamp}" TextColor="Black"/>
+											<Label Grid.Row="1" Grid.Column="0" Text="{Binding LocationText}" TextColor="Black"/>
+										</Grid>
+									</StackLayout>
+								</StackLayout>
 							</ViewCell>
 						</DataTemplate>
 					</ListView.ItemTemplate>
