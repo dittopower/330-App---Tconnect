@@ -1,9 +1,13 @@
 ﻿using System;
+using SQLite.Net.Attributes;
 
 namespace Tconnect.Data
 {
 	public class Note
 	{
+		[PrimaryKey, AutoIncrement]
+		public int NoteId { get; set; }
+		[NotNull, MaxLength(128)]
 		public string titleText { get; set; }
 		public DateTime TimeStamp { get; set; }
 		public string NoteDetail { get; set; }

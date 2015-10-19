@@ -69,11 +69,9 @@ namespace Tconnect.Data
 		public void tempPeople(){
 			int c = database.Table<Person> ().Count();
 			if (c < 1) {
-				InsertOrUpdatePerson(new Person ("Steve Grove","CellPhase Rep.","+61 5555 5555"));
-				InsertOrUpdatePerson(new Person ("Stephanie Hixon","Sim Sellers. CEO", "3921111"));
-				InsertOrUpdatePerson(new Person ("Gary Malcom","Tech Support","42"));
-				InsertOrUpdatePerson(new Person ("Stew Pickles","Marketing","666"));
-				InsertOrUpdatePerson(new Person ("Josh Henley","App Developer","04*****"));
+				InsertOrUpdatePerson(new Person ("Josh","Henley","roflmonsterjh@gmail.com","04*****","Adhesive Tech"));
+				InsertOrUpdatePerson(new Person ("Damon","Jones","dittopower@gmail.com","0466971872","Adhesive Tech"));
+				InsertOrUpdatePerson(new Person ("Jordan","Beak","mrsmiley95@gmail.com","04*****","Adhesive Tech"));
 			}
 		}
 

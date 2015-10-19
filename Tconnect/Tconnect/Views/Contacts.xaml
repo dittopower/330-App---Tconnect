@@ -11,18 +11,17 @@
 										<Grid.RowDefinitions>
 											<RowDefinition Height="3*"/>
 											<RowDefinition Height="3*"/>
-											<RowDefinition Height="3*"/>											
 										</Grid.RowDefinitions>
 										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="2*"/>
-											<ColumnDefinition Width="2*"/>
+											<ColumnDefinition Width="4*"/>
+											<ColumnDefinition Width="1*"/>
+											<ColumnDefinition Width="1*"/>
 										</Grid.ColumnDefinitions>
 
 										<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" HorizontalOptions="CenterAndExpand"/>
 										<Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1"/>
-										<Label Text="{Binding Email}"  Grid.Row="1" Grid.Column="1"/>
-										<Label Text="{Binding Phone}"  Grid.Row="2" Grid.Column="1"/>
-										<Image Grid.Row="0" Grid.Column="0" Source="socialmedia.jpg" HorizontalOptions="CenterAndExpand"/>
+										<Label Text="{Binding Lname}"  Grid.Row="0" Grid.Column="2"/>
+										<Label Text="{Binding Org}"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
 									</Grid>
 								</ViewCell>
 							</DataTemplate>
