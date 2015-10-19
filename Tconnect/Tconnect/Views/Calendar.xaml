@@ -4,7 +4,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 x:Class="Tconnect.Calendar">
 	<StackLayout Padding = "0,0,0,0" BackgroundColor="White"><!--Page background-->
 		<Image Source="calendarr.jpg" HorizontalOptions="Fill"/>
-		<StackLayout>
+		<StackLayout VerticalOptions="FillAndExpand">
 			<ScrollView>
 				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}" HasUnevenRows="true" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"><!--uneven rows fixes display issues-->
 					<ListView.ItemTemplate>
@@ -33,5 +33,9 @@ x:Class="Tconnect.Calendar">
 				</ListView>
 			</ScrollView>
 		</StackLayout>
+		<Button Text = "+" Command = "{Binding NewNoteCommand}" VerticalOptions="End" HorizontalOptions="End" />
+		<Button Text = "import" Command = "{Binding Import}" VerticalOptions="End" HorizontalOptions="Start" />
+		<Button Text = "Purge" Command = "{Binding Purge}" VerticalOptions="End" HorizontalOptions="Center" />
+	
 	</StackLayout>
 </BaseView>

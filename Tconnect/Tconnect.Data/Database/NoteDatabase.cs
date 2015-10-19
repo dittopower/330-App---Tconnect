@@ -53,6 +53,14 @@ namespace Tconnect.Data
 			return items;
 		}
 
+		public void truncade (){
+			database.DropTable<Note> ();
+			if (database.TableMappings.All(t => t.MappedType.Name != typeof(Note).Name)) {
+				database.CreateTable<Note> ();
+				database.Commit ();
+			}
+		}
+
 
 	//Contacts
 

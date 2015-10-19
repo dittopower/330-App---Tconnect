@@ -33,6 +33,8 @@ namespace Tconnect.Data.ViewModel
 
 
 		public ICommand NewNoteCommand { get; private set; }
+		public ICommand Import { get; private set; }
+		public ICommand Purge { get; private set; }
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
 		/// </summary>
@@ -40,6 +42,8 @@ namespace Tconnect.Data.ViewModel
 		{
 			this.navigationService = navigationService;
 			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
+			Import = new Command (() => joshing());
+			Purge = new Command (() => {var database = new NoteDatabase (); database.truncade(); RaisePropertyChanged (() => EventView);} );
 		}
 
 		public void OnAppearing(){
@@ -57,6 +61,15 @@ namespace Tconnect.Data.ViewModel
 
 				navigationService.NavigateTo (ViewModelLocator.EventPageKey);
 			}
+		}
+
+		private void joshing(){
+			///Do your test import stuff here josh
+
+
+
+			//This next line triggers the screen to update displayed data.
+			RaisePropertyChanged (() => EventView);
 		}
 
 	}
