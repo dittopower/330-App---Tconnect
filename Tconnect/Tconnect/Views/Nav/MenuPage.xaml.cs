@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Tconnect.Data;
+using Tconnect.Data.ViewModel;
 
 namespace Tconnect
 {
@@ -12,10 +14,10 @@ namespace Tconnect
 			InitializeComponent ();
 
 			var mymenu = new List<MyMenuItem> () {
-				new MyMenuItem("Home",() => new Feed()),
-				new MyMenuItem("Calendar",() =>  new Calendar()),
-				new MyMenuItem("Contacts",() =>  new Contacts()),
-				new MyMenuItem("Profile",() =>  new UserAccount())
+				new MyMenuItem("Home",ViewModelLocator.FeedPageKey),
+				new MyMenuItem("Calendar",ViewModelLocator.CalendarPageKey),
+				new MyMenuItem("Contacts",ViewModelLocator.ContactsPageKey),
+				new MyMenuItem("Profile",ViewModelLocator.UserAccountPageKey)
 			};
 			menulistView.ItemsSource = mymenu;
 
@@ -23,13 +25,13 @@ namespace Tconnect
 				if (OnMenuSelect != null)
 				{
 					var category = (MyMenuItem) e.SelectedItem;
-					var categoryPage = category.Page();
+					var categoryPage = category.Page;
 					OnMenuSelect(categoryPage);
 				}				
 			};
 		}
 
-		public Action<ContentPage> OnMenuSelect {
+		public Action<string> OnMenuSelect {
 			get;
 			set;
 		}

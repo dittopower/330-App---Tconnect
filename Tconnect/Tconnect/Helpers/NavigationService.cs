@@ -268,6 +268,15 @@ namespace Tconnect
 				throw e;
 			}
 		}
+
+		public Boolean BackButton{
+			get{
+				return NavigationPage.GetHasBackButton (CurrentPage);
+			}
+			set{
+				NavigationPage.SetHasBackButton (CurrentPage, value);
+			}
+		}
 	}
 }
 

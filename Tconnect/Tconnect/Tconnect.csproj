@@ -61,7 +61,6 @@
     </Compile>
     <Compile Include="Views\BaseView.cs" />
     <Compile Include="Views\Nav\Mainpage.cs" />
-    <Compile Include="Views\Nav\MyMenuItem.cs" />
     <Compile Include="Views\Nav\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>

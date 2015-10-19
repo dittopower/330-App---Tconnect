@@ -12,14 +12,10 @@ namespace Tconnect
 		{
 			var menuPage = new MenuPage ();
 			menuPage.OnMenuSelect = (categoryPage) => {
-				//var navPage = new NavigationPage(categoryPage);
+				
+				App.nav.NavigateTo(categoryPage);
+				App.nav.BackButton = false;
 
-				NavigationPage.SetHasBackButton(categoryPage,false);
-				App.nav.NavigateToPage(categoryPage);
-
-				//navPage.
-				//Detail.Title = categoryPage.Title;
-				//Detail.Navigation = navPage.Navigation;
 				IsPresented = false;
 			};
 
