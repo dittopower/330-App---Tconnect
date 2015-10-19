@@ -24,11 +24,14 @@ namespace Tconnect.Data
 		//make this a date at some point
 		public DateTime NoteDate
 		{
-			get { return noteDate; }
-			set { noteDate = value;
+			get { return noteDate.Date; }
+			set { noteDate = value.Date.Add(noteDate.TimeOfDay);
 				RaisePropertyChanged(() => NoteTitle); }
 		}
-
+		public TimeSpan NoteTime{
+			get{ return noteDate.TimeOfDay; }
+			set{ noteDate = noteDate.Date.Add (value); }
+		}
 		private string eventDetails;
 
 		public string EventDetails

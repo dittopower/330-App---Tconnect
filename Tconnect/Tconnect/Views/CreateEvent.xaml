@@ -4,7 +4,27 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 x:Class="Tconnect.CreateEvent">
 	<StackLayout Padding = "0,0,0,0">
 		<Entry x:Name = "TitleEntry" Placeholder="Name" Text="{Binding NoteTitle}"/>
-		<Entry x:Name = "DateEntry" Placeholder="Date/Time" Text="{Binding NoteDate}"/>
+		<!--<Entry x:Name = "DateEntry" Placeholder="Date/Time" Text="{Binding NoteDate}"/>-->
+		<StackLayout xmlns:sys="clr-namespace:System;assembly=mscorlib">
+		      <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding NoteDate, Mode=TwoWay}">
+		         <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+		         <DatePicker.MinimumDate>
+		            <sys:DateTime x:FactoryMethod="Parse">
+		               <x:Arguments>
+		                  <x:String>Jan 1 2015</x:String>
+		               </x:Arguments>
+		            </sys:DateTime>
+		         </DatePicker.MinimumDate>
+		         <DatePicker.MaximumDate>
+		            <sys:DateTime x:FactoryMethod="Parse">
+		               <x:Arguments>
+		                  <x:String>Dec 31 2050</x:String>
+		               </x:Arguments>
+		            </sys:DateTime>
+		         </DatePicker.MaximumDate>
+		      </DatePicker>
+		   </StackLayout>
+		<TimePicker Time="{Binding NoteTime, Mode=TwoWay}"></TimePicker>
 		<Entry x:Name = "LocEntry" Placeholder="Location" Text="{Binding NoteLocationText}"/>
 		<Entry x:Name = "DetailsEditor" Placeholder="Description" Text="{Binding EventDetails}"/>
 		<Button HorizontalOptions = "CenterAndExpand" Text="Save" Command = "{Binding SaveNoteCommand}"/>
