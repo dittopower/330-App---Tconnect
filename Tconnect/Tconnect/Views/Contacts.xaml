@@ -8,7 +8,6 @@
 							<DataTemplate>
 								<ViewCell >
 									<Grid Padding="10,10,10,10">
-										<Grid.BackgroundColor>White</Grid.BackgroundColor>
 										<Grid.RowDefinitions>
 											<RowDefinition Height="3*"/>
 											<RowDefinition Height="3*"/>
@@ -20,9 +19,9 @@
 										</Grid.ColumnDefinitions>
 
 										<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" HorizontalOptions="CenterAndExpand"/>
-										<Label Text="{Binding Name}" TextColor="Black" Grid.Row="0" Grid.Column="1"/>
-										<Label Text="{Binding Email}" TextColor="Black" Grid.Row="1" Grid.Column="1"/>
-										<Label Text="{Binding Phone}" TextColor="Black" Grid.Row="2" Grid.Column="1"/>
+										<Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1"/>
+										<Label Text="{Binding Email}"  Grid.Row="1" Grid.Column="1"/>
+										<Label Text="{Binding Phone}"  Grid.Row="2" Grid.Column="1"/>
 										<Image Grid.Row="0" Grid.Column="0" Source="socialmedia.jpg" HorizontalOptions="CenterAndExpand"/>
 									</Grid>
 								</ViewCell>

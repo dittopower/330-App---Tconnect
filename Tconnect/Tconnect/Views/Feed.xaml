@@ -15,10 +15,10 @@
 										<ColumnDefinition Width="1*"/>
 										<ColumnDefinition Width="1*"/>
 									</Grid.ColumnDefinitions>
-										<Label Grid.Row="0" Grid.Column="1" Text="{Binding titleText}" TextColor ="White"/>
-										<Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding TimeStamp}" TextColor ="White"/>
-										<Label Grid.Row="1" Grid.Column="0" Text="{Binding NoteDetail}" TextColor ="White"/>
-										<Label Grid.Row="1" Grid.Column="1" Text="{Binding LocationText}" TextColor ="White"/>
+										<Label Grid.Row="0" Grid.Column="1" Text="{Binding titleText}" />
+										<Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding TimeStamp}" />
+										<Label Grid.Row="1" Grid.Column="0" Text="{Binding NoteDetail}" />
+										<Label Grid.Row="1" Grid.Column="1" Text="{Binding LocationText}" />
 									</Grid>
 								</ViewCell>
 							</DataTemplate>
