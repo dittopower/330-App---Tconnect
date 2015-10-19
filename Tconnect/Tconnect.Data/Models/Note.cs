@@ -10,8 +10,8 @@ namespace Tconnect.Data
 		[NotNull, MaxLength(128)]
 		public string titleText { get; set; }
 		public DateTime TimeStamp { get; set; }
-		public string NoteDetail { get; set; }
 		public string LocationText { get; set; }
+		public string NoteDetail { get; set; }
 
 		public Note(){
 		}

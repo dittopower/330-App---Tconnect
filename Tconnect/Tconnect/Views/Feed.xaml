@@ -2,7 +2,7 @@
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.Feed">
 		<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 			<ScrollView>
-				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}">
+				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>

@@ -2,25 +2,18 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Tconnect
 {
-	public partial class EventView : ContentPage
+	public partial class EventView : BaseView
 	{
 		public EventView ()
 		{
 			InitializeComponent ();
-
+			base.Init ();
+			BindingContext = App.Locator.Eventp;
 			Title = "Event View";
-
-			var noteList = new List<Notes> ();
-
-			noteList.Add (new Notes ("Steve Grove"){ TimeStamp = "CellPhase Rep."});
-			noteList.Add (new Notes ("Stephanie Hixon"){ TimeStamp = "Sim Sellers. CEO" });
-			noteList.Add (new Notes ("Gary Malcom"){ TimeStamp = "Tech Support"});
-			noteList.Add (new Notes ("Stew Pickles"){ TimeStamp = "Marketing"});
-
-			NoteListView.ItemsSource = noteList;
 		}
 	}
 }

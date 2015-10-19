@@ -4,6 +4,8 @@ using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using Tconnect.Data;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Tconnect.Data.ViewModel
 {
@@ -19,44 +21,28 @@ namespace Tconnect.Data.ViewModel
 	/// See http://www.galasoft.ch/mvvm
 	/// </para>
 	/// </summary>
-	public class MainFeedViewModel : ViewModelBase
+	public class EventViewModel : ViewModelBase
 	{
 		private IMyNavigationService navigationService;
-
-		public ObservableCollection<Note> EventView {
-			get {
-				var database = new NoteDatabase ();
-				var x = database.FutureNotes ();
-				return new ObservableCollection<Note> (x);
-			}
+		/*Everything below here is place holder*/
+		private Note _event;
+		public Note Event {
+			get{ return _event; }
+			set { _event = value;}
 		}
-
 
 		public ICommand NewNoteCommand { get; private set; }
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
 		/// </summary>
-		public MainFeedViewModel(IMyNavigationService navigationService)
+		public EventViewModel(IMyNavigationService navigationService)
 		{
+			var database = new NoteDatabase();
 			this.navigationService = navigationService;
 			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
-		}
 
-		public void OnAppearing(){
-			RaisePropertyChanged (() => EventView);
-		}
+				Event = database.NextNote();
 
-		private Note _selectedEvent;
-		public Note SelectedEvent {
-			get{ return _selectedEvent;}
-			set {
-				if (value == _selectedEvent)
-					return;
-				_selectedEvent = value;
-				RaisePropertyChanged ("SelectedEvent");
-
-				navigationService.NavigateTo (ViewModelLocator.EventPageKey);
-			}
 		}
 
 	}

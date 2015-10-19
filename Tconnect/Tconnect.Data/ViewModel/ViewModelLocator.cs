@@ -31,6 +31,7 @@ namespace Tconnect.Data.ViewModel
 		public const string UserAccountPageKey = "UserAccountPage";
 		public const string ContactsPageKey = "ContactsPage";
 		public const string NavPageKey = "NavPage";
+		public const string EventPageKey = "EventPage";
 		/// <summary>
 		/// Initializes a new instance of the ViewModelLocator class.
 		/// </summary>
@@ -71,6 +72,12 @@ namespace Tconnect.Data.ViewModel
 			SimpleIoc.Default.Register<ContactsViewModel>(() => 
 				{
 					return new ContactsViewModel(
+						SimpleIoc.Default.GetInstance<IMyNavigationService>()
+					);
+				});
+			SimpleIoc.Default.Register<EventViewModel>(() => 
+				{
+					return new EventViewModel(
 						SimpleIoc.Default.GetInstance<IMyNavigationService>()
 					);
 				});
@@ -127,6 +134,14 @@ namespace Tconnect.Data.ViewModel
 			get
 			{
 				return ServiceLocator.Current.GetInstance<ContactsViewModel>();
+			}
+		}
+
+		public EventViewModel Eventp
+		{
+			get
+			{
+				return ServiceLocator.Current.GetInstance<EventViewModel>();
 			}
 		}
 

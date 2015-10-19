@@ -46,5 +46,18 @@ namespace Tconnect.Data.ViewModel
 			RaisePropertyChanged (() => EventView);
 		}
 
+		private Note _selectedEvent;
+		public Note SelectedEvent {
+			get{ return _selectedEvent;}
+			set {
+				if (value == _selectedEvent)
+					return;
+				_selectedEvent = value;
+				RaisePropertyChanged ("SelectedEvent");
+
+				navigationService.NavigateTo (ViewModelLocator.EventPageKey);
+			}
+		}
+
 	}
 }

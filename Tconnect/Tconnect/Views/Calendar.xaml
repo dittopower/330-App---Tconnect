@@ -6,7 +6,7 @@ x:Class="Tconnect.Calendar">
 		<Image Source="calendarr.jpg" HorizontalOptions="Fill"/>
 		<StackLayout>
 			<ScrollView>
-				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}" HasUnevenRows="true"><!--uneven rows fixes display issues-->
+				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}" HasUnevenRows="true" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"><!--uneven rows fixes display issues-->
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
