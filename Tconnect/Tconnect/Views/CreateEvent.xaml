@@ -3,7 +3,7 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Tconnect.CreateEvent">
 	<StackLayout Padding = "0,0,0,0">
-		<Entry x:Name = "TitleEntry" Placeholder="Name" Text="{Binding NoteTitle}"/>
+		<Entry x:Name = "TitleEntry" Placeholder="Name" Text="{Binding NoteTitle, Mode=TwoWay}"/>
 		<!--<Entry x:Name = "DateEntry" Placeholder="Date/Time" Text="{Binding NoteDate}"/>-->
 		<StackLayout xmlns:sys="clr-namespace:System;assembly=mscorlib">
 		      <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding NoteDate, Mode=TwoWay}">
@@ -25,8 +25,8 @@ x:Class="Tconnect.CreateEvent">
 		      </DatePicker>
 		   </StackLayout>
 		<TimePicker Time="{Binding NoteTime, Mode=TwoWay}"></TimePicker>
-		<Entry x:Name = "LocEntry" Placeholder="Location" Text="{Binding NoteLocationText}"/>
-		<Entry x:Name = "DetailsEditor" Placeholder="Description" Text="{Binding EventDetails}"/>
+		<Entry x:Name = "LocEntry" Placeholder="Location" Text="{Binding NoteLocationText, Mode=TwoWay}"/>
+		<Entry x:Name = "DetailsEditor" Placeholder="Description" Text="{Binding EventDetails, Mode=TwoWay}"/>
 		<Button HorizontalOptions = "CenterAndExpand" Text="Save" Command = "{Binding SaveNoteCommand}"/>
 		<Label Text="Invite List"/>
 		<StackLayout>
