@@ -25,10 +25,22 @@ namespace Tconnect.Data.ViewModel
 	{
 		private IMyNavigationService navigationService;
 		/*Everything below here is place holder*/
-		private Note _event;
+		private Note _event = null;
 		public Note Event {
 			get{ return _event; }
 			set { _event = value;}
+		}
+
+		private int id = 0;
+		public int ID {
+			set {
+				id = value;
+				if (id > 0) {
+					var database = new NoteDatabase ();
+					Event = database.GetNote (id);
+					RaisePropertyChanged (() => Event);
+				}
+			}
 		}
 
 		public ICommand NewNoteCommand { get; private set; }
@@ -37,12 +49,8 @@ namespace Tconnect.Data.ViewModel
 		/// </summary>
 		public EventViewModel(IMyNavigationService navigationService)
 		{
-			var database = new NoteDatabase();
 			this.navigationService = navigationService;
 			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
-
-				Event = database.NextNote();
-
 		}
 
 	}

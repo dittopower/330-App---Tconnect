@@ -39,8 +39,8 @@ namespace Tconnect.Data
 				? database.Update (note) : database.Insert (note);
 		}
 
-		public Note GetNote(string key){
-			return database.Table<Note> ().First (t => t.titleText == key); 
+		public Note GetNote(int key){
+			return database.Table<Note> ().First (t => t.NoteId == key); 
 		}
 
 		public Note NextNote(){

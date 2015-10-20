@@ -55,7 +55,7 @@ namespace Tconnect.Data.ViewModel
 				_selectedEvent = value;
 				RaisePropertyChanged ("SelectedEvent");
 
-				navigationService.NavigateTo (ViewModelLocator.EventPageKey);
+				navigationService.NavigateTo (ViewModelLocator.EventPageKey,SelectedEvent.NoteId);
 			}
 		}
 
