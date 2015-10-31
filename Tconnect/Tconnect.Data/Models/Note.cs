@@ -1,5 +1,6 @@
 ﻿using System;
 using SQLite.Net.Attributes;
+using System.Diagnostics;
 
 namespace Tconnect.Data
 {
@@ -27,6 +28,16 @@ namespace Tconnect.Data
 			TimeStamp = timeStamp;
 			LocationText = locationText;
 			NoteDetail = noteDetail;
+			Debug.WriteLine (timeStamp);
+		}
+		public Note (int id, string titleText, DateTime timeStamp, string locationText = "", string noteDetail = "")
+		{
+			NoteId = id;
+			this.titleText = titleText;
+			TimeStamp = timeStamp;
+			LocationText = locationText;
+			NoteDetail = noteDetail;
+			Debug.WriteLine (timeStamp);
 		}
 	}
 }

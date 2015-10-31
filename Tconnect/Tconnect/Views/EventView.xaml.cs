@@ -17,7 +17,13 @@ namespace Tconnect
 			BindingContext = App.Locator.Eventp;
 			Title = "Event View";
 			((EventViewModel)BindingContext).ID = thing;
-			//((EventViewModel)BindingContext).ID = thing;
+		}
+
+		protected override void OnAppearing ()
+		{
+			base.OnAppearing ();
+			var vm = ServiceLocator.Current.GetInstance<EventViewModel> ();
+			vm.OnAppearing ();
 		}
 	}
 }

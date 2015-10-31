@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.EventView">
 <StackLayout Padding="5,0,5,0">
-		<StackLayout>
-			<Grid>
+	<StackLayout>
+		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="2*"/>
 				<RowDefinition Height="2*"/>
@@ -14,14 +14,14 @@
 				<Label Grid.Row="0" Grid.Column="0" Text="{Binding Event.titleText}" FontSize="30"/>
 				<Label Grid.Row="0" Grid.Column="1" Text="{Binding Event.TimeStamp}"/>
 				<Label Grid.Row="2" Grid.Column="0" Text="{Binding Event.LocationText}"/>
-			</Grid>
-			<StackLayout Padding="0,3,0,10">
-				<Label Text="{Binding Event.NoteDetail}" HorizontalOptions = "FillAndExpand" VerticalOptions = "Fill"  />
-			</StackLayout>
-			<Label Text="Attendies:" FontSize="Medium"/>
-			<StackLayout>
+		</Grid>
+		<StackLayout Padding="0,3,0,10">
+			<Label Text="{Binding Event.NoteDetail}" HorizontalOptions = "FillAndExpand" VerticalOptions = "Fill"  />
+		</StackLayout>
+		<Label Text="Attendies:" FontSize="Medium"/>
+			<!-- <StackLayout>
 				<ScrollView>
-				<!--	<ListView x:Name="NoteListView">
+					<ListView x:Name="NoteListView">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>
@@ -40,9 +40,10 @@
 								</ViewCell>
 							</DataTemplate>
 						</ListView.ItemTemplate>
-					</ListView>-->
+					</ListView>
 				</ScrollView>
-			</StackLayout>
-		</StackLayout>
-		</StackLayout>
+			</StackLayout>-->
+	</StackLayout>
+			<Button Text = "Edit" Command = "{Binding EditCommand}" VerticalOptions="End" HorizontalOptions="End" />
+</StackLayout>
 </BaseView>

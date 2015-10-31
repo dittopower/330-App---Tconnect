@@ -11,55 +11,67 @@ namespace Tconnect.Data
 	public class EventCreateViewModel :ViewModelBase
 	{
 		public ICommand SaveNoteCommand { get; private set;}
-		private String noteTitle = "";
+		public Note Event =  new Note ();
 
 		public String NoteTitle
 		{
-			get { return noteTitle; }
-			set { noteTitle = value;
+			get { return Event.titleText; }
+			set { Event.titleText = value;
 				RaisePropertyChanged(() => NoteTitle); }
 		}
 
-
-		private DateTime noteDate = DateTime.Now;
 		//make this a date at some point
 		public DateTime NoteDate
 		{
-			get { return noteDate.Date; }
-			set { noteDate = value.Date.Add(noteDate.TimeOfDay);
+			get { return Event.TimeStamp.Date; }
+			set { Event.TimeStamp = value.Date.Add(Event.TimeStamp.TimeOfDay);
 				RaisePropertyChanged(() => NoteDate); }
 		}
 		public TimeSpan NoteTime{
-			get{ return noteDate.TimeOfDay; }
-			set{ noteDate = noteDate.Date.Add (value);
+			get{ return Event.TimeStamp.TimeOfDay; }
+			set{ Event.TimeStamp = Event.TimeStamp.Date.Add (value);
 				RaisePropertyChanged(() => NoteTime);
-				Debug.WriteLine (noteDate);
 			}
 		}
-		private string eventDetails = "";
 
 		public string EventDetails
 		{
-			get { return eventDetails; }
-			set { eventDetails = value;
+			get { return Event.NoteDetail; }
+			set { Event.NoteDetail = value;
 				RaisePropertyChanged(() => EventDetails); }
 		}
 
-		private string noteLocationText = "";
-
 		public string NoteLocationText
 		{
-			get { return noteLocationText; }
-			set { noteLocationText = value;
+			get { return Event.LocationText; }
+			set { Event.LocationText = value;
 				RaisePropertyChanged(() => NoteLocationText); }
 		}
 
+
+		private int id = 0;
+		public int ID {
+			set {
+				id = value;
+				if (id > 0) {
+					var database = new NoteDatabase ();
+					Event = database.GetNote (id);
+				}else {
+					Event = new Note ("",DateTime.Now,"","");
+				}
+				RaisePropertyChanged (() => NoteTitle);
+				RaisePropertyChanged(() => EventDetails);
+				RaisePropertyChanged(() => NoteLocationText);
+				RaisePropertyChanged(() => NoteTime);
+				RaisePropertyChanged(() => NoteDate);
+			}
+		}
 
 		public EventCreateViewModel (IMyNavigationService navigationService)
 		{
 			var database = new NoteDatabase();
 			SaveNoteCommand = new Command (() => {
-				database.InsertOrUpdateNote(new Note(NoteTitle,NoteDate,NoteLocationText,EventDetails));
+				database.InsertOrUpdateNote(Event);
 				navigationService.GoBack();
 			});
 		}

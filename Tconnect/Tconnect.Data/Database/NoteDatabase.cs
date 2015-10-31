@@ -35,7 +35,7 @@ namespace Tconnect.Data
 		}
 
 		public int InsertOrUpdateNote(Note note){
-			return database.Table<Note> ().Where (x => x.titleText == note.titleText).Count () > 0 
+			return database.Table<Note> ().Where (x => x.NoteId == note.NoteId).Count () > 0 
 				? database.Update (note) : database.Insert (note);
 		}
 

@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using Tconnect.Data;
 using Microsoft.Practices.ServiceLocation;
+using System.Diagnostics;
 
 namespace Tconnect.Data.ViewModel
 {
@@ -38,19 +39,25 @@ namespace Tconnect.Data.ViewModel
 				if (id > 0) {
 					var database = new NoteDatabase ();
 					Event = database.GetNote (id);
+					Debug.WriteLine (Event.TimeStamp);
 					RaisePropertyChanged (() => Event);
 				}
 			}
 		}
 
-		public ICommand NewNoteCommand { get; private set; }
+		public void OnAppearing(){
+			RaisePropertyChanged (() => Event);
+		}
+
+		public ICommand EditCommand { get; private set; }
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
 		/// </summary>
 		public EventViewModel(IMyNavigationService navigationService)
 		{
 			this.navigationService = navigationService;
-			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
+			EditCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey,id));
+
 		}
 
 	}
