@@ -69,6 +69,10 @@ namespace Tconnect.Data
 			return items;
 		}
 
+		public Person GetPerson(int key){
+			return database.Table<Person> ().First (t => t.NoteId == key); 
+		}
+
 		public int InsertOrUpdatePerson(Person person){
 			return database.Table<Person> ().Where (x => x.Name == person.Name).Count () > 0 
 				? database.Update (person) : database.Insert (person);
