@@ -13,6 +13,7 @@ namespace Tconnect.Data
 		public DateTime TimeStamp { get; set; }
 		public string LocationText { get; set; }
 		public string NoteDetail { get; set; }
+		public string Attendees { get; set; }
 
 		public Note(){
 		}
@@ -22,22 +23,22 @@ namespace Tconnect.Data
 		/// <param name="titleText">Title text.</param>
 		/// <param name="timeStamp">Time stamp.</param>
 		/// <param name="actionRequiredFlag">Action required flag.</param>
-		public Note (string titleText, DateTime timeStamp, string locationText = "", string noteDetail = "")
+		public Note (string titleText, DateTime timeStamp, string locationText = "", string noteDetail = "", string people = "")
 		{
 			this.titleText = titleText;
 			TimeStamp = timeStamp;
 			LocationText = locationText;
 			NoteDetail = noteDetail;
-			Debug.WriteLine (timeStamp);
+			Attendees = people;
 		}
-		public Note (int id, string titleText, DateTime timeStamp, string locationText = "", string noteDetail = "")
+		public Note (int id, string titleText, DateTime timeStamp, string locationText = "", string noteDetail = "", string people = "")
 		{
 			NoteId = id;
 			this.titleText = titleText;
 			TimeStamp = timeStamp;
 			LocationText = locationText;
 			NoteDetail = noteDetail;
-			Debug.WriteLine (timeStamp);
+			Attendees = people;
 		}
 	}
 }

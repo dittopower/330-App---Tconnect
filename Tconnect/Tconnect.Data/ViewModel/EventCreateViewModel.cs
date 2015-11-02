@@ -57,10 +57,18 @@ namespace Tconnect.Data
 				if (id > 0) {
 					var database = new NoteDatabase ();
 					Event = database.GetNote (id);
+				//	Debug.WriteLine ("This");
+					//Debug.WriteLine (Event.Attendees);
+					var p = Event.Attendees.Split (',');
+					foreach (string me in p) {
+						var who = database.GetPerson (int.Parse (me));
+						people.Add (who);
+					}
+					//Debug.WriteLine (people.Count);
 				}else {
 					Event = new Note ("",DateTime.Now,"","");
+					people = new List<Person> ();
 				}
-				people = new List<Person> ();
 				RaisePropertyChanged (() => NoteTitle);
 				RaisePropertyChanged(() => EventDetails);
 				RaisePropertyChanged(() => NoteLocationText);
@@ -71,15 +79,6 @@ namespace Tconnect.Data
 			}
 		}
 
-		public EventCreateViewModel (IMyNavigationService navigationService)
-		{
-			var database = new NoteDatabase();
-			SaveNoteCommand = new Command (() => {
-				database.InsertOrUpdateNote(Event);
-				navigationService.GoBack();
-			});
-		}
-
 		public ObservableCollection<Person> PeopleView {
 			get {
 				var database = new NoteDatabase ();
@@ -88,12 +87,27 @@ namespace Tconnect.Data
 				return new ObservableCollection<Person> (x);
 			}
 		}
-			
+
 		private List<Person> people = new List<Person>();
 		public ObservableCollection<Person> People{
 			get{
 				return new ObservableCollection<Person> (people);
 			}
+		}
+
+		public EventCreateViewModel (IMyNavigationService navigationService)
+		{
+			var database = new NoteDatabase();
+			SaveNoteCommand = new Command (() => {
+				foreach(Person p in people){
+					Event.Attendees += p.NoteId + ",";
+				}
+				Event.Attendees = Event.Attendees.Trim(',');
+				//Debug.WriteLine (people.ToArray().ToString());
+				//Debug.WriteLine (Event.Attendees);
+				database.InsertOrUpdateNote(Event);
+				navigationService.GoBack();
+			});
 		}
 
 
@@ -105,13 +119,12 @@ namespace Tconnect.Data
 					return;
 				_selectedPerson = value;
 				//RaisePropertyChanged ("SelectedPerson");
-
 				if (people.Contains(_selectedPerson)) {
 					people.Remove (_selectedPerson);
 				} else {
 					people.Add (_selectedPerson);
 				}
-				Debug.WriteLine (people.Count);
+				//Debug.WriteLine (people.Count);
 				RaisePropertyChanged (() => People);
 			}
 		}
