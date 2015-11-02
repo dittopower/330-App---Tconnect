@@ -54,20 +54,28 @@ namespace Tconnect.Data
 		public int ID {
 			set {
 				id = value;
+				people = new List<Person> ();
 				if (id > 0) {
 					var database = new NoteDatabase ();
 					Event = database.GetNote (id);
 				//	Debug.WriteLine ("This");
 					//Debug.WriteLine (Event.Attendees);
-					var p = Event.Attendees.Split (',');
-					foreach (string me in p) {
-						var who = database.GetPerson (int.Parse (me));
-						people.Add (who);
+					if (Event.Attendees.Contains (",")) {
+						var p = Event.Attendees.Split (',');
+						foreach (string me in p) {
+							var who = database.GetPerson (int.Parse (me));
+							people.Add (who);
+						}
+					} else {
+						int p;
+						if (int.TryParse (Event.Attendees,out p)) {
+							var who = database.GetPerson (p);
+							people.Add (who);
+						}
 					}
 					//Debug.WriteLine (people.Count);
 				}else {
 					Event = new Note ("",DateTime.Now,"","");
-					people = new List<Person> ();
 				}
 				RaisePropertyChanged (() => NoteTitle);
 				RaisePropertyChanged(() => EventDetails);
@@ -99,6 +107,7 @@ namespace Tconnect.Data
 		{
 			var database = new NoteDatabase();
 			SaveNoteCommand = new Command (() => {
+				Event.Attendees = "";
 				foreach(Person p in people){
 					Event.Attendees += p.NoteId + ",";
 				}
@@ -115,12 +124,11 @@ namespace Tconnect.Data
 		public Person SelectedPerson {
 			get{ return _selectedPerson;}
 			set {
-				if (value == _selectedPerson)
-					return;
 				_selectedPerson = value;
 				//RaisePropertyChanged ("SelectedPerson");
-				if (people.Contains(_selectedPerson)) {
-					people.Remove (_selectedPerson);
+				if (people.Exists(x => x.NoteId == _selectedPerson.NoteId)) {
+					people.RemoveAt (people.FindIndex (x => x.NoteId == _selectedPerson.NoteId));
+					//people.Remove (_selectedPerson);
 				} else {
 					people.Add (_selectedPerson);
 				}
