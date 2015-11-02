@@ -1,52 +1,54 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.UserAccount">
 	<StackLayout>
-		<ScrollView>
-			<StackLayout>
-				<Label Text="Steve Grove" HorizontalOptions="Center" FontSize="Large"/>
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="1*"/>
-						<RowDefinition Height="1*"/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="2*"/>
-						<ColumnDefinition Width="2*"/>
-					</Grid.ColumnDefinitions>
+		<StackLayout>
+			<Label Text="{Binding Name}" HorizontalOptions="Center" FontSize="Large"/>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="3*"/>
+					<RowDefinition Height="3*"/>
+					<RowDefinition Height="3*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
 
-					<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" WidthRequest="100" HeightRequest="100"/>
-					<Label Grid.Row="0" Grid.Column="1">
-						<Label.Text>
-							Cellphase Rep.
-							0466 823 984
-						</Label.Text>
-					</Label>
-				</Grid>
-			</StackLayout>
-		</ScrollView>
-		<!--<StackLayout>
-			<ScrollView>
-				<ListView x:Name="NoteListView">
+				<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" WidthRequest="100" HeightRequest="50"/>
+				<Label Text="{Binding Org}" Grid.Row="0" Grid.Column="1"/>
+				<Label Text="{Binding Email}" Grid.Row="1" Grid.Column="1">
+				    <Label.GestureRecognizers>
+				        <TapGestureRecognizer Command="{Binding EmailCommand}"/>
+				    </Label.GestureRecognizers>
+				</Label>
+				<Label Text="{Binding Phone}" Grid.Row="2" Grid.Column="1">
+				    <Label.GestureRecognizers>
+				        <TapGestureRecognizer Command="{Binding CallCommand}"/>
+				    </Label.GestureRecognizers>
+				</Label>
+			</Grid>
+		</StackLayout>
+		<!--<Label Text="Shared Events">
+		<ScrollView>
+				<ListView x:Name="SharedEventView">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<Grid>
 									<Grid.RowDefinitions>
-										<RowDefinition Height="2*"/>
-										<RowDefinition Height="2*"/>
+										<RowDefinition Height="1*"/>
 									</Grid.RowDefinitions>
 									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="1*"/>
-										<ColumnDefinition Width="1*"/>
+										<ColumnDefinition Width="2*"/>
+										<ColumnDefinition Width="2*"/>
 									</Grid.ColumnDefinitions>
-									<Label Grid.Row="1" Grid.Column="0" Text="{Binding TimeStamp}"/>
 									<Label Grid.Row="0" Grid.Column="0" Text="{Binding titleText}"/>
+									<Label Grid.Row="0" Grid.Column="1" Text="{Binding TimeStamp}"/>
 								</Grid>
 							</ViewCell>
 						</DataTemplate>
 					</ListView.ItemTemplate>
 				</ListView>
-			</ScrollView>
-		</StackLayout>-->
+			</ScrollView>-->
 	</StackLayout>
 </BaseView>

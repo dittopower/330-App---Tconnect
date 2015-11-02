@@ -4,6 +4,7 @@ using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Tconnect.Data.ViewModel
 {
@@ -34,11 +35,26 @@ namespace Tconnect.Data.ViewModel
 
 		public ContactsViewModel (IMyNavigationService navigationService)
 		{
-			
+			this.navigationService = navigationService;
 		}
 
 		public void OnAppearing(){
 			RaisePropertyChanged (() => PeopleView);
+		}
+
+
+		private Person _selectedPerson;
+		public Person SelectedPerson {
+			get{ return _selectedPerson;}
+			set {
+				if (value == _selectedPerson)
+					return;
+				_selectedPerson = value;
+				RaisePropertyChanged ("SelectedPerson");
+				Debug.WriteLine (_selectedPerson.NoteId);
+
+				navigationService.NavigateTo (ViewModelLocator.UserAccountPageKey,_selectedPerson.NoteId);
+			}
 		}
 
 	}

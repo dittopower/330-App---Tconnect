@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Microsoft.Practices.ServiceLocation;
+using Tconnect.Data.ViewModel;
 
 namespace Tconnect
 {
 	public partial class UserAccount : BaseView
 	{
-		public UserAccount ()
+		public UserAccount () : this(0){}
+		public UserAccount (int thing)
 		{
 			InitializeComponent ();
 			base.Init ();
 			BindingContext = App.Locator.UserAccount;
-
 			Title = "User Details";
+			((UserAccountViewModel)BindingContext).ID = thing;
+		}
 
-			/*var noteList = new List<Notes> ();
-
-			noteList.Add (new Notes ("Meeting with Cellcare"){ TimeStamp = "11:00 am"});
-			noteList.Add (new Notes ("Recollection Meeting"){ TimeStamp = "12:00 pm" });
-			noteList.Add (new Notes ("Help out Jeff"){ TimeStamp = "2:00 pm"});
-
-			NoteListView.ItemsSource = noteList;*/
+		protected override void OnAppearing ()
+		{
+			base.OnAppearing ();
+			var vm = ServiceLocator.Current.GetInstance<EventViewModel> ();
+			vm.OnAppearing ();
 		}
 	}
 }

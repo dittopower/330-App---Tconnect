@@ -4,6 +4,7 @@ using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Tconnect.Data.ViewModel
 {
@@ -23,27 +24,55 @@ namespace Tconnect.Data.ViewModel
 	{
 		private IMyNavigationService navigationService;
 		/*Everything below here is place holder*/
-		public ObservableCollection<Note> EventView {
-			get {
-				var database = new NoteDatabase ();
-				var x = database.GetAll ();
-				return new ObservableCollection<Note> (x);
+		public Person Who = new Person ("John", "Smith", "you@email.com", "0466 666 666", "QUT", "");
+
+		public string Name{
+			get{return Who.Name + " " + Who.Lname; }
+		}
+		public string Email{
+			get{return Who.Email; }
+		}
+		public string Phone{
+			get{return Who.Phone; }
+		}
+		public string Org{
+			get{return Who.Org; }
+		}
+
+		private int id;
+		public int ID{
+			get{return id;}
+			set{id = value;
+				if (id > 0) {
+					Debug.WriteLine (id);
+					var database = new NoteDatabase ();
+					Who = database.GetPerson (id);
+				} else {
+					Who = new Person ("John", "Smith", "you@email.com", "0466 666 666", "QUT", "");
+				}
+				RaisePropertyChanged (() => Name);
+				RaisePropertyChanged (() => Email);
+				RaisePropertyChanged (() => Phone);
+				RaisePropertyChanged (() => Org);
 			}
 		}
 
+		public ICommand CallCommand { get; private set; }
+		public ICommand EmailCommand { get; private set; }
 
-		public ICommand NewNoteCommand { get; private set; }
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
 		/// </summary>
 		public UserAccountViewModel(IMyNavigationService navigationService)
 		{
 			this.navigationService = navigationService;
-			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
+			CallCommand = new Command (() => Device.OpenUri(new Uri("tel:"+Who.Phone)));
+			EmailCommand = new Command (() => Device.OpenUri(new Uri("mailto:"+Who.Email)));
+			//facebook fb://messaging?id=
 		}
 
 		public void OnAppearing(){
-			RaisePropertyChanged (() => EventView);
+			RaisePropertyChanged (() => Who);
 		}
 
 	}
