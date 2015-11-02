@@ -2,7 +2,7 @@
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Tconnect.CreateEvent">
-	<StackLayout Padding = "0,0,0,0">
+	<StackLayout Padding = "5,0,5,0" Spacing ="-5">
 		<Entry x:Name = "TitleEntry" Placeholder="Name" Text="{Binding NoteTitle, Mode=TwoWay}"/>
 		<!--<Entry x:Name = "DateEntry" Placeholder="Date/Time" Text="{Binding NoteDate}"/>-->
 		<StackLayout xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -28,30 +28,57 @@ x:Class="Tconnect.CreateEvent">
 		<Entry x:Name = "LocEntry" Placeholder="Location" Text="{Binding NoteLocationText, Mode=TwoWay}"/>
 		<Entry x:Name = "DetailsEditor" Placeholder="Description" Text="{Binding EventDetails, Mode=TwoWay}"/>
 		<Button HorizontalOptions = "CenterAndExpand" Text="Save" Command = "{Binding SaveNoteCommand}"/>
-		<Label Text="Invite List"/>
-		<StackLayout>
-			<ScrollView>
-				<ListView x:Name="NoteListView">
+		<Label Text="Invited"/>
+			<ScrollView HeightRequest="150" >
+				<ListView x:Name="AttendeesListView" RowHeight="50" ItemsSource="{Binding People, Mode=TwoWay}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<ViewCell>
-								<Grid>
+							<ViewCell >
+								<Grid Padding="5,5,5,5" RowSpacing="0">
 									<Grid.RowDefinitions>
 										<RowDefinition Height="2*"/>
 										<RowDefinition Height="2*"/>
 									</Grid.RowDefinitions>
 									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="2*"/>
 										<ColumnDefinition Width="1*"/>
 										<ColumnDefinition Width="1*"/>
 									</Grid.ColumnDefinitions>
-									<Label Grid.Row="0" Grid.Column="0" Text="{Binding TimeStamp}"/>
-									<Label Grid.Row="1" Grid.Column="0" Text="{Binding titleText}"/>
+
+									<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" HorizontalOptions="CenterAndExpand"/>
+									<Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1"/>
+									<Label Text="{Binding Org}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
 								</Grid>
 							</ViewCell>
 						</DataTemplate>
 					</ListView.ItemTemplate>
 				</ListView>
 			</ScrollView>
-		</StackLayout>
+		<Label Text="All Contacts"/>
+			<ScrollView>
+				<ListView x:Name="PersonListView" RowHeight="50" ItemsSource="{Binding PeopleView}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell >
+								<Grid Padding="5,5,5,5" RowSpacing="0">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="2*"/>
+										<RowDefinition Height="2*"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="2*"/>
+										<ColumnDefinition Width="1*"/>
+										<ColumnDefinition Width="1*"/>
+									</Grid.ColumnDefinitions>
+
+									<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" HorizontalOptions="CenterAndExpand"/>
+									<Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1"/>
+									<Label Text="{Binding Org}"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</ScrollView>
 	</StackLayout>
 </BaseView>

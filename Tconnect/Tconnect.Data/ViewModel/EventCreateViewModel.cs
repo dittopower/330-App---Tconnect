@@ -5,6 +5,8 @@ using Xamarin.Forms;
 using Tconnect.Data.ViewModel;
 using Microsoft.Practices.ServiceLocation;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Tconnect.Data
 {
@@ -48,7 +50,6 @@ namespace Tconnect.Data
 				RaisePropertyChanged(() => NoteLocationText); }
 		}
 
-
 		private int id = 0;
 		public int ID {
 			set {
@@ -59,11 +60,14 @@ namespace Tconnect.Data
 				}else {
 					Event = new Note ("",DateTime.Now,"","");
 				}
+				people = new List<Person> ();
 				RaisePropertyChanged (() => NoteTitle);
 				RaisePropertyChanged(() => EventDetails);
 				RaisePropertyChanged(() => NoteLocationText);
 				RaisePropertyChanged(() => NoteTime);
 				RaisePropertyChanged(() => NoteDate);
+				RaisePropertyChanged(() => PeopleView);
+				RaisePropertyChanged(() => People);
 			}
 		}
 
@@ -76,7 +80,41 @@ namespace Tconnect.Data
 			});
 		}
 
+		public ObservableCollection<Person> PeopleView {
+			get {
+				var database = new NoteDatabase ();
+				database.tempPeople ();//Delete this line when we can input real data
+				var x = database.GetAllPeople ();
+				return new ObservableCollection<Person> (x);
+			}
+		}
+			
+		private List<Person> people = new List<Person>();
+		public ObservableCollection<Person> People{
+			get{
+				return new ObservableCollection<Person> (people);
+			}
+		}
 
+
+		private Person _selectedPerson;
+		public Person SelectedPerson {
+			get{ return _selectedPerson;}
+			set {
+				if (value == _selectedPerson)
+					return;
+				_selectedPerson = value;
+				//RaisePropertyChanged ("SelectedPerson");
+
+				if (people.Contains(_selectedPerson)) {
+					people.Remove (_selectedPerson);
+				} else {
+					people.Add (_selectedPerson);
+				}
+				Debug.WriteLine (people.Count);
+				RaisePropertyChanged (() => People);
+			}
+		}
 	}
 }
 
