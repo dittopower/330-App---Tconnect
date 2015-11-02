@@ -5,6 +5,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 
+
+
 namespace Tconnect.Data.ViewModel
 {
 	/// <summary>
@@ -66,11 +68,21 @@ namespace Tconnect.Data.ViewModel
 		private void joshing(){
 			///Do your test import stuff here josh
 
+			var database = new NoteDatabase();
 
+			List<String[]> cList = DependencyService.Get<ISqlite> ().getEvents();
+
+			foreach(String[] e in cList){
+				Note n = new Note (e[1], new DateTime(), "loc: " + e[1], "deet: " + e[1]);
+				database.InsertOrUpdateNote(n);
+			}
+				
 
 			//This next line triggers the screen to update displayed data.
 			RaisePropertyChanged (() => EventView);
 		}
+
+
 
 	}
 }
