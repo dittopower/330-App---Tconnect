@@ -4,7 +4,7 @@ using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
-
+using Tconnect.Data;
 
 
 namespace Tconnect.Data.ViewModel
@@ -70,7 +70,7 @@ namespace Tconnect.Data.ViewModel
 
 			var database = new NoteDatabase();
 
-			List<String[]> cList = DependencyService.Get<ISqlite> ().getEvents();
+			List<String[]> cList = DependencyService.Get<ICalendarInterface> ().getEvents();
 
 			foreach(String[] e in cList){
 				Note n = new Note (e[1], new DateTime(), "loc: " + e[1], "deet: " + e[1]);
