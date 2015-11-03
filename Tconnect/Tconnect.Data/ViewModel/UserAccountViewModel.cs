@@ -42,18 +42,14 @@ namespace Tconnect.Data.ViewModel
 		private int id;
 		public int ID{
 			get{return id;}
-			set{id = value;
-				if (id > 0) {
-					Debug.WriteLine (id);
-					var database = new NoteDatabase ();
-					Who = database.GetPerson (id);
-				} else {
-					Who = new Person ("John", "Smith", "you@email.com", "0466 666 666", "QUT", "");
-				}
-				RaisePropertyChanged (() => Name);
-				RaisePropertyChanged (() => Email);
-				RaisePropertyChanged (() => Phone);
-				RaisePropertyChanged (() => Org);
+			set{id = value;}
+		}
+
+		public ObservableCollection<Note> EventView {
+			get {
+				var database = new NoteDatabase ();
+				var x = database.GetCommonEvents (id);
+				return new ObservableCollection<Note> (x);
 			}
 		}
 
@@ -72,7 +68,31 @@ namespace Tconnect.Data.ViewModel
 		}
 
 		public void OnAppearing(){
-			RaisePropertyChanged (() => Who);
+			//Debug.WriteLine (id);
+			if (id > 0) {
+				var database = new NoteDatabase ();
+				Who = database.GetPerson (id);
+			} else {
+				Who = new Person ("John", "Smith", "you@email.com", "0466 666 666", "QUT", "");
+			}
+			RaisePropertyChanged (() => Name);
+			RaisePropertyChanged (() => Email);
+			RaisePropertyChanged (() => Phone);
+			RaisePropertyChanged (() => Org);
+			RaisePropertyChanged (() => EventView);
+		}
+
+		private Note _selectedEvent;
+		public Note SelectedEvent {
+			get{ return _selectedEvent;}
+			set {
+				if (value == _selectedEvent)
+					return;
+				_selectedEvent = value;
+				RaisePropertyChanged ("SelectedEvent");
+
+				navigationService.NavigateTo (ViewModelLocator.EventPageKey,SelectedEvent.NoteId);
+			}
 		}
 
 	}

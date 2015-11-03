@@ -61,6 +61,24 @@ namespace Tconnect.Data
 			}
 		}
 
+		public List<Note> GetCommonEvents(string id){
+			var items = database.Table<Note> ().Where(t => t.Attendees.Contains(id)).ToList<Note>();
+			var res = new List<Note> ();
+			foreach (var i in items) {
+				if (i.Attendees.Split (',').Contains (id)) {
+					res.Add (i);
+				}
+			}
+			return res;
+		}
+		public List<Note> GetCommonEvents(int id){
+			return GetCommonEvents(id.ToString());
+		}
+		public List<Note> GetCommonEvents(Person who){
+			return GetCommonEvents(who.NoteId);
+		}
+
+
 
 	//Contacts
 

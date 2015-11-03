@@ -22,7 +22,7 @@ namespace Tconnect
 		protected override void OnAppearing ()
 		{
 			base.OnAppearing ();
-			var vm = ServiceLocator.Current.GetInstance<EventViewModel> ();
+			var vm = ServiceLocator.Current.GetInstance<UserAccountViewModel> ();
 			vm.OnAppearing ();
 		}
 	}
