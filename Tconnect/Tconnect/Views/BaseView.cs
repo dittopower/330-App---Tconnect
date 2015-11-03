@@ -26,6 +26,16 @@ namespace Tconnect
 				};
 			}
 		}
+
+		protected override void OnAppearing ()
+		{
+			base.OnAppearing ();
+
+			if (!App.IsLoggedIn) {
+				App.nav.NavigateToPage(new LoginPage(),true);
+				//App.nav.NavigateToModal();
+			}
+		}
 	}
 }
 

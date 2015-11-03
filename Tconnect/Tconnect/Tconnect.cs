@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using GalaSoft.MvvmLight.Ioc;
 using Tconnect.Data.ViewModel;
 using Tconnect.Data;
+using System.Diagnostics;
 
 namespace Tconnect
 {
@@ -20,6 +21,16 @@ namespace Tconnect
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
+			if (!IsLoggedIn) {
+				var database = new NoteDatabase ();
+				if (database.HasToken ("Yammer")) {
+					var t = database.GetToken ("Yammer");
+					if (t != null) {
+						_Token = t.Value;
+					}
+					Debug.WriteLine (_Token);
+				}
+			}
 		}
 
 		protected override void OnSleep ()
@@ -30,6 +41,15 @@ namespace Tconnect
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
+			if (!IsLoggedIn) {
+				var database = new NoteDatabase ();
+				if (database.HasToken ("Yammer")) {
+					var t = database.GetToken ("Yammer");
+					if (t != null) {
+						_Token = t.Value;
+					}
+				}
+			}
 		}
 
 		private static ViewModelLocator _locator;
@@ -62,6 +82,33 @@ namespace Tconnect
 			var navPage = new NavigationPage (new Feed ());//swap to feed when bug is fixed
 			nav.Initialize (navPage);
 			return navPage;
+		}
+
+
+		//Yammer auth stuff
+		public static bool IsLoggedIn {
+			get { return !string.IsNullOrWhiteSpace(_Token); }
+		}
+
+		static string _Token;
+		public static string Token {
+			get { return _Token; }
+		}
+
+		public static void SaveToken(string token)
+		{
+			_Token = token;
+			var database = new NoteDatabase ();
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("Yammer",token));
+		}
+
+		public static Action SuccessfulLoginAction
+		{
+			get {
+				return new Action (() => {
+					nav.GoBack();
+				});
+			}
 		}
 	}
 }

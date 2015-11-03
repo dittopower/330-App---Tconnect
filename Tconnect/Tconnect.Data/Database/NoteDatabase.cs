@@ -24,6 +24,10 @@ namespace Tconnect.Data
 				database.CreateTable<Person> ();
 				database.Commit ();
 			}
+			if (database.TableMappings.All(t => t.MappedType.Name != typeof(Token).Name)) {
+				database.CreateTable<Token> ();
+				database.Commit ();
+			}
 		}
 
 
@@ -92,7 +96,7 @@ namespace Tconnect.Data
 		}
 
 		public int InsertOrUpdatePerson(Person person){
-			return database.Table<Person> ().Where (x => x.Name == person.Name).Count () > 0 
+			return database.Table<Person> ().Where (x => x.NoteId == person.NoteId).Count () > 0 
 				? database.Update (person) : database.Insert (person);
 		}
 
@@ -103,6 +107,23 @@ namespace Tconnect.Data
 				InsertOrUpdatePerson(new Person ("Damon","Jones","dittopower@gmail.com","0466971872","Adhesive Tech"));
 				InsertOrUpdatePerson(new Person ("Jordan","Beak","mrsmiley95@gmail.com","04*****","Adhesive Tech"));
 			}
+		}
+
+
+
+		//Tokens
+
+		public int InsertOrUpdateToken(Token token){
+			return database.Table<Token> ().Where (x => x.Service == token.Service).Count () > 0 
+				? database.Update (token) : database.Insert (token);
+		}
+
+		public Token GetToken(string key){
+			return database.Table<Token> ().Where(t => t.Service == key).First (); 
+		}
+
+		public bool HasToken(string key){
+			return (database.Table<Token> ().Where (t => t.Service == key).Count () > 0);
 		}
 
 	}
