@@ -115,10 +115,12 @@ namespace Tconnect.Data
 				//Debug.WriteLine (people.ToArray().ToString());
 				//Debug.WriteLine (Event.Attendees);
 				database.InsertOrUpdateNote(Event);
+
+				DependencyService.Get<ICalendarInterface> ().addToSystemCal(Event.TimeStamp, Event.titleText, Event.NoteDetail, Event.LocationText, 1);
+
 				navigationService.GoBack();
 			});
 		}
-
 
 		private Person _selectedPerson;
 		public Person SelectedPerson {

@@ -23,7 +23,7 @@ using Java.Util;
 
 namespace Tconnect.Droid
 {
-	public class CalendarList : ICalendarInterface //IDK WHY LIST ACTIVITY WORKS BUT IT DOES
+	public class CalendarList : ICalendarInterface
 	{
 		public int _calId;
 		public List<String[]> calen,events;
@@ -44,6 +44,10 @@ namespace Tconnect.Droid
 
 		public List<String[]> getCalendars(){
 			return calendar.getCalendars();
+		}
+
+		public void addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){
+			calendar.addToSystemCal(dstart, title, desc, loc, calID);
 		}
 
 		#endregion

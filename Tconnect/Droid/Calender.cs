@@ -74,7 +74,6 @@ namespace Tconnect.Droid
 			return things;
 		}
 
-
 		public List<String[]> getCalendars(){
 			// List Calendars
 			var calendarsUri = CalendarContract.Calendars.ContentUri;
@@ -104,6 +103,36 @@ namespace Tconnect.Droid
 			cursor.Close();
 
 			return calendars;
+
+		}
+			
+		public void addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){
+
+			ContentResolver contentResolver = Forms.Context.ApplicationContext.ContentResolver;
+
+			ContentValues calEvent = new ContentValues();
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.CalendarId, calID);
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.Title, title);
+
+			double time = dstart.ToUniversalTime ().Subtract (new DateTime (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+
+			DateTime dend = dstart;
+			dend.AddHours (2);//default 2 hours long
+
+			double timeend = dend.ToUniversalTime ().Subtract (new DateTime (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+
+			//Console.WriteLine ("dst " + time + " eventloc: " + loc);
+
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.Dtstart, time);
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.Dtend, timeend);
+
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.Description, desc);
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.EventLocation, loc);
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "AEST");//fuck timezones, who even needs them
+
+			Forms.Context.ApplicationContext.ContentResolver.Insert(CalendarContract.Events.ContentUri, calEvent);
+
+			//Console.WriteLine ("EVENT ADDED TO PHONE MAYBE");
 
 		}
 
