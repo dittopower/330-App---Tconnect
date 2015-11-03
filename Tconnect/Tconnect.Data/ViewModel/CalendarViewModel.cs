@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using Tconnect.Data;
+using System.Diagnostics;
 
 
 namespace Tconnect.Data.ViewModel
@@ -73,8 +74,9 @@ namespace Tconnect.Data.ViewModel
 			List<String[]> cList = DependencyService.Get<ICalendarInterface> ().getEvents();
 
 			foreach(String[] e in cList){
-				Note n = new Note (e[1], new DateTime(), "loc: " + e[1], "deet: " + e[1]);
-				database.InsertOrUpdateNote(n);
+				Debug.WriteLine (e);
+				//Note n = new Note (e[1], new DateTime(), "loc: " + e[1], "deet: " + e[1]);
+				//database.InsertOrUpdateNote(n);
 			}
 				
 

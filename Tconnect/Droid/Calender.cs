@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xamarin.Forms;
 
 using Android.App;
 using Android.Content;
@@ -36,8 +37,8 @@ namespace Tconnect.Droid
 				CalendarContract.Events.InterfaceConsts.Title,
 				CalendarContract.Events.InterfaceConsts.Dtstart
 			};
-				
-			var cursor = ManagedQuery (eventsUri, eventsProjection, String.Format ("calendar_id={0}", 1), null, "dtstart ASC");
+			var cursor = Forms.Context.ApplicationContext.ContentResolver.Query (eventsUri, eventsProjection, String.Format ("calendar_id={0}", 1), null, "dtstart ASC");
+			//var cursor = ManagedQuery (eventsUri, eventsProjection, String.Format ("calendar_id={0}", 1), null, "dtstart ASC");
 
 			List<String[]> things = new List<String[]> ();
 
