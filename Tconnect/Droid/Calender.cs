@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,29 +26,45 @@ namespace Tconnect.Droid
 			// Create your application here
 		}
 
-
-		public List<String[]> getEvents()
+		public List<String[]> getEvents(int calendarid = 1)
 		{       
 			var eventsUri = CalendarContract.Events.ContentUri;
 			Console.WriteLine ("whatever");
 			string[] eventsProjection = { 
 				CalendarContract.Events.InterfaceConsts.Id,
 				CalendarContract.Events.InterfaceConsts.Title,
-				CalendarContract.Events.InterfaceConsts.Dtstart
+				CalendarContract.Events.InterfaceConsts.Dtstart,
+				CalendarContract.Events.InterfaceConsts.Dtend,
+				CalendarContract.Events.InterfaceConsts.Description,
+				CalendarContract.Events.InterfaceConsts.EventLocation
 			};
-			var cursor = Forms.Context.ApplicationContext.ContentResolver.Query (eventsUri, eventsProjection, String.Format ("calendar_id={0}", 1), null, "dtstart ASC");
-			//var cursor = ManagedQuery (eventsUri, eventsProjection, String.Format ("calendar_id={0}", 1), null, "dtstart ASC");
+			//Date d = new Date ();
+			Java.Util.Calendar c = Java.Util.Calendar.GetInstance(Java.Util.TimeZone.GetTimeZone("AEST"));
+
+			c.Add(CalendarField.Month, -1);
+
+			Console.WriteLine ("Date: " + c.Get(CalendarField.DayOfMonth) + "/" + c.Get(CalendarField.Month) + "/" + c.Get(CalendarField.Year)+" ::: "+ c.TimeInMillis);
+
+			String ww = "calendar_id=" + calendarid + " AND dtstart > " + c.TimeInMillis;
+
+			ICursor cursor = Forms.Context.ApplicationContext.ContentResolver.Query (eventsUri, eventsProjection, ww, null, "dtstart ASC");
+			//do date not datetime, write to system calendar
 
 			List<String[]> things = new List<String[]> ();
 
 			if (cursor.MoveToFirst()){
 				do{
 
-					String calid = cursor.GetString(cursor.GetColumnIndex("_id"));
-					String title = cursor.GetString(cursor.GetColumnIndex("title"));
-					String Dstart = cursor.GetString(cursor.GetColumnIndex("dtstart"));
+					String calid = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.Id));
+					String title = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.Title));
+					String Dstart = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.Dtstart));
+					String Dend = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.Dtend));
+					String desc = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.Description));
+					String loc = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.EventLocation));
 
-					things.Add(new String[] {calid,title,Dstart});
+					things.Add(new String[] {calid,title,Dstart,Dend,desc,loc});
+
+					//Console.WriteLine("ID: " + calid);
 
 				}while(cursor.MoveToNext());
 			}
@@ -57,14 +72,6 @@ namespace Tconnect.Droid
 			cursor.Close();
 
 			return things;
-
-			/*List<String[]> things = new List<String[]> ();
-			things.Add (new String[] {"1","new title 1","doesnm atter"});
-			things.Add (new String[] {"1","new title 2","doesnm atter"});
-			things.Add (new String[] {"1","new title 3","doesnm atter"});
-			things.Add (new String[] {"1","new title 4","doesnm atter"});
-			things.Add (new String[] {"1","new title 5","doesnm atter"});
-			return things;*/
 		}
 
 
@@ -78,7 +85,7 @@ namespace Tconnect.Droid
 				CalendarContract.Calendars.InterfaceConsts.AccountName
 			};
 
-			var cursor = ManagedQuery (calendarsUri, calendarsProjection, null, null, null);
+			ICursor cursor = Forms.Context.ApplicationContext.ContentResolver.Query (calendarsUri, calendarsProjection, null, null, null);
 
 			List<String[]> calendars = new List<String[]> ();      
 
@@ -98,23 +105,8 @@ namespace Tconnect.Droid
 
 			return calendars;
 
-			//return new List<String[]> ();
-
 		}
 
-
-		/*long GetDateTimeMS (int yr, int month, int day, int hr, int min)
-		{
-			Calendar c = Calendar.GetInstance (Java.Util.TimeZone.Default);
-
-			c.Set (Calendar.DayOfMonth, 15);
-			c.Set (Calendar.HourOfDay, hr);
-			c.Set (Calendar.Minute, min);
-			c.Set (Calendar.Month, Calendar.December);
-			c.Set (Calendar.Year, 2011);
-
-			return c.TimeInMillis;
-		}*/
 	}
 }
 

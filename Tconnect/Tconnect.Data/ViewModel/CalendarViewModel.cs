@@ -74,17 +74,31 @@ namespace Tconnect.Data.ViewModel
 			List<String[]> cList = DependencyService.Get<ICalendarInterface> ().getEvents();
 
 			foreach(String[] e in cList){
-				Debug.WriteLine (e);
-				//Note n = new Note (e[1], new DateTime(), "loc: " + e[1], "deet: " + e[1]);
-				//database.InsertOrUpdateNote(n);
+				//Debug.WriteLine (e);
+				/*
+				 * 0=id
+				 * 1=title
+				 * 2=dstart
+				 * 3=dend
+				 * 4=desc
+				 * 5=loc
+				 */
+
+				Note n = new Note (Int32.Parse(e[0]),"Title: " + e[1], mstoDateTime(e[2]), "Location: " + e[5], "Description: " + e[4],"noone attending");
+				//Debug.WriteLine ("DatE: "+e[2]);
+				database.InsertOrUpdateNote(n);
 			}
 				
-
 			//This next line triggers the screen to update displayed data.
 			RaisePropertyChanged (() => EventView);
+
 		}
 
-
+		public DateTime mstoDateTime(String s){
+			Double tt = Convert.ToDouble (s);
+			DateTime UnixStartDate = new DateTime(1970, 1, 1);
+			return UnixStartDate.AddMilliseconds (tt);
+		}
 
 	}
 }

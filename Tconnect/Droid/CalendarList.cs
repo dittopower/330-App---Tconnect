@@ -38,32 +38,13 @@ namespace Tconnect.Droid
 
 		public List<String[]> getEvents()
 		{       
-			
 			return calendar.getEvents();
 		}
 
 
 		public List<String[]> getCalendars(){
-			
 			return calendar.getCalendars();
-
-			//return new List<String[]> ();
-
 		}
-
-
-		/*long GetDateTimeMS (int yr, int month, int day, int hr, int min)
-		{
-			Calendar c = Calendar.GetInstance (Java.Util.TimeZone.Default);
-
-			c.Set (Calendar.DayOfMonth, 15);
-			c.Set (Calendar.HourOfDay, hr);
-			c.Set (Calendar.Minute, min);
-			c.Set (Calendar.Month, Calendar.December);
-			c.Set (Calendar.Year, 2011);
-
-			return c.TimeInMillis;
-		}*/
 
 		#endregion
 
