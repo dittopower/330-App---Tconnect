@@ -36,17 +36,17 @@ namespace Tconnect.Data.ViewModel
 		public int ID {
 			set {
 				id = value;
-				if (id > 0) {
-					var database = new NoteDatabase ();
-					Event = database.GetNote (id);
-					Debug.WriteLine (Event.TimeStamp);
-					RaisePropertyChanged (() => Event);
-				}
 			}
 		}
 
 		public void OnAppearing(){
-			RaisePropertyChanged (() => Event);
+			if (id > 0) {
+				var database = new NoteDatabase ();
+				Event = database.GetNote (id);
+				Debug.WriteLine (Event.TimeStamp);
+				RaisePropertyChanged (() => Event);
+			}
+			//RaisePropertyChanged (() => Event);
 		}
 
 		public ICommand EditCommand { get; private set; }
