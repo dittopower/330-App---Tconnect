@@ -95,6 +95,7 @@
     <Folder Include="Converters\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\Nav\" />
+    <Folder Include="ViewModel\New Folder\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\TempMenu.xaml">

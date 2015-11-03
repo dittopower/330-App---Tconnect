@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="White">
 				<ScrollView>
-					<ListView x:Name="NoteListView" RowHeight="80" ItemsSource="{Binding PeopleView}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
+					<ListView x:Name="NoteListView" RowHeight="80" ItemsSource="{Binding PeopleView}">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell >
@@ -18,7 +18,7 @@
 											<ColumnDefinition Width="1*"/>
 										</Grid.ColumnDefinitions>
 
-										<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" HorizontalOptions="CenterAndExpand"/>
+										<Image Grid.Row="0" Grid.Column="0" Source="ProfileImage.jpg" HorizontalOptions="CenterAndExpand"/>
 										<Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1"/>
 										<Label Text="{Binding Lname}"  Grid.Row="0" Grid.Column="2"/>
 										<Label Text="{Binding Org}"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
