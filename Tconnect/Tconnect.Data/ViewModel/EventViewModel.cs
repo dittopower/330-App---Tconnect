@@ -39,11 +39,33 @@ namespace Tconnect.Data.ViewModel
 			}
 		}
 
+		private List<Person> people = new List<Person>();
+		public ObservableCollection<Person> People{
+			get{
+				return new ObservableCollection<Person> (people);
+			}
+		}
+
 		public void OnAppearing(){
 			if (id > 0) {
 				var database = new NoteDatabase ();
 				Event = database.GetNote (id);
-				Debug.WriteLine (Event.TimeStamp);
+				//Debug.WriteLine (Event.TimeStamp);
+				people = new List<Person> ();
+				if (Event.Attendees.Contains (",")) {
+					var p = Event.Attendees.Split (',');
+					foreach (string me in p) {
+						var who = database.GetPerson (int.Parse (me));
+						people.Add (who);
+					}
+				} else {
+					int p;
+					if (int.TryParse (Event.Attendees,out p)) {
+						var who = database.GetPerson (p);
+						people.Add (who);
+					}
+				}
+				RaisePropertyChanged(() => People);
 				RaisePropertyChanged (() => Event);
 			}
 			//RaisePropertyChanged (() => Event);
@@ -58,6 +80,20 @@ namespace Tconnect.Data.ViewModel
 			this.navigationService = navigationService;
 			EditCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey,id));
 
+		}
+
+		private Person _selectedPerson;
+		public Person SelectedPerson {
+			get{ return _selectedPerson;}
+			set {
+				if (value == _selectedPerson)
+					return;
+				_selectedPerson = value;
+				RaisePropertyChanged ("SelectedPerson");
+				Debug.WriteLine (_selectedPerson.NoteId);
+
+				navigationService.NavigateTo (ViewModelLocator.UserAccountPageKey,_selectedPerson.NoteId);
+			}
 		}
 
 	}

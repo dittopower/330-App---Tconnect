@@ -19,31 +19,32 @@
 			<Label Text="{Binding Event.NoteDetail}" HorizontalOptions = "FillAndExpand" VerticalOptions = "Fill"  />
 		</StackLayout>
 		<Label Text="Attendies:" FontSize="Medium"/>
-			<!-- <StackLayout>
-				<ScrollView>
-					<ListView x:Name="NoteListView">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<ViewCell>
-									<Grid>
-										<Grid.RowDefinitions>
-											<RowDefinition Height="2*"/>
-											<RowDefinition Height="2*"/>
-										</Grid.RowDefinitions>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="1*"/>
-											<ColumnDefinition Width="1*"/>
-										</Grid.ColumnDefinitions>
-										<Label Grid.Row="0" Grid.Column="0" Text="{Binding TimeStamp}"/>
-										<Label Grid.Row="1" Grid.Column="0" Text="{Binding titleText}"/>
-									</Grid>
-								</ViewCell>
-							</DataTemplate>
-						</ListView.ItemTemplate>
-					</ListView>
-				</ScrollView>
-			</StackLayout>-->
+			<ScrollView>
+				<ListView x:Name="PeopleListView" RowHeight="50" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}" VerticalOptions="FillAndExpand" HasUnevenRows="true">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="2*"/>
+										<RowDefinition Height="2*"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="2*"/>
+										<ColumnDefinition Width="1*"/>
+										<ColumnDefinition Width="1*"/>
+									</Grid.ColumnDefinitions>
+
+									<Image Grid.Row="0" Grid.Column="0" Source="picture.jpg" HorizontalOptions="CenterAndExpand"/>
+									<Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}"/>
+									<Label Grid.Row="0" Grid.Column="1" Text="{Binding Org}"/>
+								</Grid>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</ScrollView>
+		</StackLayout>
+		<Button Text = "Edit" Command = "{Binding EditCommand}" VerticalOptions="End" HorizontalOptions="End" />
 	</StackLayout>
-			<Button Text = "Edit" Command = "{Binding EditCommand}" VerticalOptions="End" HorizontalOptions="End" />
-</StackLayout>
 </BaseView>
