@@ -47,7 +47,7 @@ namespace Tconnect.Data
 			if (database.Table<Note> ().Where (x => x.CalId == note.CalId).Count () > 0) {
 				var n = database.Table<Note> ().First (t => t.CalId == note.CalId);
 				note.NoteId = n.NoteId;
-
+				note.Attendees = n.Attendees;
 			}
 			return InsertOrUpdateNote (note);
 		}
