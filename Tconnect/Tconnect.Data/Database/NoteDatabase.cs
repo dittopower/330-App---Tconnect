@@ -74,6 +74,14 @@ namespace Tconnect.Data
 			}
 		}
 
+		public void truncadePerson (){
+			database.DropTable<Person> ();
+			if (database.TableMappings.All(t => t.MappedType.Name != typeof(Person).Name)) {
+				database.CreateTable<Person> ();
+				database.Commit ();
+			}
+		}
+
 		public List<Note> GetCommonEvents(string id){
 			var items = database.Table<Note> ().Where(t => t.Attendees.Contains(id)).ToList<Note>();
 			var res = new List<Note> ();

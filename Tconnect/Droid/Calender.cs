@@ -14,6 +14,10 @@ using Android.Widget;
 using Android.Database;
 using Android.Provider;
 using Java.Util;
+using System.Net;
+using System.IO;
+using Org.Json;
+
 
 namespace Tconnect.Droid
 {
@@ -135,6 +139,83 @@ namespace Tconnect.Droid
 			//Console.WriteLine ("EVENT ADDED TO PHONE MAYBE");
 
 		}
+
+		public List<String[]> contactRequest(String token){/* stops working after the first 10 because REST api limit */
+
+			String output = httpRequest(token,"https://www.yammer.com/api/v1/users.json");
+
+			if (output != "") {
+				JSONArray jObject = new JSONArray (output); // json
+				List<String[]> ppl = new List<String[]> ();
+
+				int c = 0;
+				JSONObject data, person, tmp;
+				String[] items;
+				String uid,fname,lname,email,phone="",org,userdeets;
+				//maybe use less memory because im using heaps apparently
+
+				for (int i = 0; i < jObject.Length (); i++) {
+					if(c < 8){//limit for now
+						data = jObject.GetJSONObject (i); // get data object
+						uid = data.GetString ("id");
+
+						//userdeets = httpRequest (token, "https://www.yammer.com/api/v1/users/" + uid + ".json");
+
+						//if (userdeets != "") {
+							//Console.WriteLine (uid);
+
+							//person = new JSONObject (userdeets); // get data object
+
+							fname = data.GetString ("first_name");
+							lname = data.GetString ("last_name");
+							email = data.GetString ("email");
+
+
+							tmp = data.GetJSONObject ("contact");
+							phone = tmp.GetString ("phone_numbers");
+
+							org = data.GetString ("network_name");
+
+							//Console.WriteLine (fname + " : " + lname + " : " + email + " : " + phone + " : " + org + " : " + uid);
+
+							items = new String[] { fname, lname, email, phone, org, uid };
+							ppl.Add (items);
+						
+						//}//individual users
+						c++;
+					}//limit
+
+				}//loop
+
+				return ppl;
+
+			}//get all users
+
+			return new List<String[]>();
+
+		}//contactRequest
+
+		public String httpRequest(String token, String url){
+			try{
+				HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;  
+				request.Headers.Add ("Authorization","Bearer " + token);//fuck this line especially
+
+				// Get response  
+				using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)  
+				{  
+					// Get the response stream  
+					StreamReader reader = new StreamReader(response.GetResponseStream());  
+
+					return reader.ReadToEnd();
+
+				}
+			}
+			catch{
+				Console.WriteLine ("Ur internet got dead");
+				return "";
+			}
+
+		}//contactRequest
 
 	}
 }

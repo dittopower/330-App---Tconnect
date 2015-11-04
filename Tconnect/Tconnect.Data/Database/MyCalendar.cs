@@ -22,6 +22,7 @@ namespace Tconnect.Data
 			return calendar.getEvents ();
 		}
 		public void UpdateCal(){
+			Note n;
 			foreach(String[] e in getEvents()){
 				//Debug.WriteLine (e);
 				/*
@@ -33,7 +34,7 @@ namespace Tconnect.Data
 				 * 5=loc
 				 */
 
-				Note n = new Note (e[1],mstoDateTime(e[2]), e[5], e[4],"");
+				n = new Note (e[1],mstoDateTime(e[2]), e[5], e[4],"");
 				n.CalId = int.Parse (e [0]);
 				database.CalendarInsertOrUpdateNote(n);
 			}
@@ -42,6 +43,10 @@ namespace Tconnect.Data
 
 		public List<String[]> getCalendars(){
 			return calendar.getCalendars ();
+		}
+
+		public List<String[]> contactRequest(String token){
+			return calendar.contactRequest (token);
 		}
 
 		public void addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){

@@ -50,6 +50,10 @@ namespace Tconnect.Droid
 			calendar.addToSystemCal(dstart, title, desc, loc, calID);
 		}
 
+		public List<String[]> contactRequest (String token){
+			return calendar.contactRequest (token);
+		}
+
 		#endregion
 
 	}

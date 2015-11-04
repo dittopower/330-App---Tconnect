@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using Tconnect.Data;
 using System.Diagnostics;
 
+using System.Net;
+
 
 namespace Tconnect.Data.ViewModel
 {
@@ -40,6 +42,8 @@ namespace Tconnect.Data.ViewModel
 		public ICommand NewNoteCommand { get; private set; }
 		public ICommand Import { get; private set; }
 		public ICommand Purge { get; private set; }
+
+		NoteDatabase database = new NoteDatabase ();
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
 		/// </summary>
@@ -48,7 +52,7 @@ namespace Tconnect.Data.ViewModel
 			this.navigationService = navigationService;
 			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
 			Import = new Command (() => joshing());
-			Purge = new Command (() => {var database = new NoteDatabase (); database.truncade(); RaisePropertyChanged (() => EventView);} );
+			Purge = new Command (() => {database.truncade(); database.truncadePerson(); RaisePropertyChanged (() => EventView);} );
 		}
 
 		public void OnAppearing(){
@@ -71,6 +75,16 @@ namespace Tconnect.Data.ViewModel
 		private void joshing(){
 			///Do your test import stuff here josh
 
+			MyCalendar m = new MyCalendar ();
+
+			List<String[]> ppl = m.contactRequest (database.GetToken("Yammer").Value);
+
+			foreach(String[] s in ppl){
+				database.InsertOrUpdatePerson (new Person(s[0],s[1],s[2],s[3],s[4],s[5]));
+				Debug.WriteLine ("Adding " + s[5]);
+			}
+
+			//InsertOrUpdatePerson(new Person ("Josh","Henley","roflmonsterjh@gmail.com","04*****","Adhesive Tech"));
 
 			//This next line triggers the screen to update displayed data.
 			RaisePropertyChanged (() => EventView);
