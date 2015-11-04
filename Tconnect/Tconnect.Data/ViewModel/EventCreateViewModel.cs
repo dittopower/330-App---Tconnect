@@ -112,11 +112,10 @@ namespace Tconnect.Data
 					Event.Attendees += p.NoteId + ",";
 				}
 				Event.Attendees = Event.Attendees.Trim(',');
-				//Debug.WriteLine (people.ToArray().ToString());
-				//Debug.WriteLine (Event.Attendees);
 				database.InsertOrUpdateNote(Event);
 
-				DependencyService.Get<ICalendarInterface> ().addToSystemCal(Event.TimeStamp, Event.titleText, Event.NoteDetail, Event.LocationText, 1);
+				var cal = new MyCalendar ();
+				//cal.addToSystemCal(Event.TimeStamp, Event.titleText, Event.NoteDetail, Event.LocationText, 1);
 
 				navigationService.GoBack();
 			});
