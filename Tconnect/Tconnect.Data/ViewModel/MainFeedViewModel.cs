@@ -25,6 +25,8 @@ namespace Tconnect.Data.ViewModel
 
 		public ObservableCollection<Note> EventView {
 			get {
+				var cal = new MyCalendar ();
+				cal.UpdateCal ();
 				var database = new NoteDatabase ();
 				var x = database.FutureNotes ();
 				return new ObservableCollection<Note> (x);

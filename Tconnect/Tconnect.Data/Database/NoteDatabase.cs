@@ -33,7 +33,7 @@ namespace Tconnect.Data
 
 	//Notes/Events
 		public List<Note> GetAll(){
-			var items = database.Table<Note> ().ToList<Note>();
+			var items = database.Table<Note> ().OrderBy(t => t.TimeStamp).ToList<Note>();
 
 			return items;
 		}
@@ -41,6 +41,15 @@ namespace Tconnect.Data
 		public int InsertOrUpdateNote(Note note){
 			return database.Table<Note> ().Where (x => x.NoteId == note.NoteId).Count () > 0 
 				? database.Update (note) : database.Insert (note);
+		}
+
+		public int CalendarInsertOrUpdateNote(Note note){
+			if (database.Table<Note> ().Where (x => x.CalId == note.CalId).Count () > 0) {
+				var n = database.Table<Note> ().First (t => t.CalId == note.CalId);
+				note.NoteId = n.NoteId;
+
+			}
+			return InsertOrUpdateNote (note);
 		}
 
 		public Note GetNote(int key){

@@ -5,8 +5,8 @@ x:Class="Tconnect.Calendar">
 	<StackLayout Padding = "0,0,0,0" BackgroundColor="White"><!--Page background-->
 		<Image Source="calendarr.jpg" HorizontalOptions="Fill"/>
 		<StackLayout VerticalOptions="FillAndExpand">
-			<ScrollView>
-				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}" HasUnevenRows="true" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"><!--uneven rows fixes display issues-->
+			<ScrollView VerticalOptions="FillAndExpand">
+				<ListView x:Name="NoteListView" ItemsSource="{Binding EventView}" RowHeight="60" SelectedItem="{Binding SelectedEvent, Mode=TwoWay}" VerticalOptions="FillAndExpand"><!--uneven rows fixes display issues-->
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
