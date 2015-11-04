@@ -14,10 +14,10 @@ namespace Tconnect
 			InitializeComponent ();
 
 			var mymenu = new List<MyMenuItem> () {
-				new MyMenuItem("Home",ViewModelLocator.FeedPageKey),
-				new MyMenuItem("Calendar",ViewModelLocator.CalendarPageKey),
-				new MyMenuItem("Contacts",ViewModelLocator.ContactsPageKey),
-				new MyMenuItem("Profile",ViewModelLocator.UserAccountPageKey)
+				new MyMenuItem("Home",ViewModelLocator.FeedPageKey,"IcoHome"),
+				new MyMenuItem("Calendar",ViewModelLocator.CalendarPageKey,"IcoCal"),
+				new MyMenuItem("Contacts",ViewModelLocator.ContactsPageKey,"IcoCon"),
+				new MyMenuItem("Profile",ViewModelLocator.UserAccountPageKey,"IcoProf")
 			};
 			menulistView.ItemsSource = mymenu;
 
