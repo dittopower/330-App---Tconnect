@@ -2,34 +2,36 @@
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.UserAccount">
 	<StackLayout>
 		<StackLayout>
-			<Grid>
+			<Grid Padding="10,10,10,10">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="50"/>
+					<RowDefinition Height="30"/>
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				<Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
 			</Grid>
-			<Grid>
+			<Image Source="{Binding ProfilePicture}"/>
+			<Grid Padding="10,10,10,10">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="3*"/>
-					<RowDefinition Height="3*"/>
-					<RowDefinition Height="3*"/>
+					<RowDefinition Height="25"/>
+					<RowDefinition Height="25"/>
+					<RowDefinition Height="25"/>
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="2*"/>
-					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="3*"/>
 				</Grid.ColumnDefinitions>
-
-				<Image Grid.RowSpan="3" Grid.Column="0" Source="{Binding ProfilePicture}" WidthRequest="300" HeightRequest="300"/>
-				<Label Text="{Binding Org}" Grid.Row="0" Grid.Column="1"/>
-				<Label Text="{Binding Email}" Grid.Row="1" Grid.Column="1">
+				<Label Text="Organisation" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
+				<Label Text="{Binding Org}" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start"/>
+				<Label Text="Email" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
+				<Label Text="{Binding Email}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
 				    <Label.GestureRecognizers>
 				        <TapGestureRecognizer Command="{Binding EmailCommand}"/>
 				    </Label.GestureRecognizers>
 				</Label>
-				<Label Text="{Binding Phone}" Grid.Row="2" Grid.Column="1">
+				<Label Text="Phone" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
+				<Label Text="{Binding Phone}" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
 				    <Label.GestureRecognizers>
 				        <TapGestureRecognizer Command="{Binding CallCommand}"/>
 				    </Label.GestureRecognizers>
