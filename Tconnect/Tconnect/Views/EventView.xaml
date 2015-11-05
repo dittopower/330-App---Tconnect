@@ -1,23 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.EventView">
-<StackLayout Padding="5,0,5,0">
+<StackLayout Padding="15,15,15,15">
 	<StackLayout>
 		<Grid>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="2*"/>
-				<RowDefinition Height="2*"/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="3*"/>
+				<ColumnDefinition Width="1*"/>
 				<ColumnDefinition Width="1*"/>
 			</Grid.ColumnDefinitions>
-				<Label Grid.Row="0" Grid.Column="0" Text="{Binding Event.titleText}" FontSize="30"/>
-				<Label Grid.Row="0" Grid.Column="1" Text="{Binding Event.TimeStamp}"/>
-				<Label Grid.Row="2" Grid.Column="0" Text="{Binding Event.LocationText}"/>
+			<Label Grid.Row="0" Grid.Column="0" Text="{Binding Event.titleText}" FontSize="Large" VerticalOptions="Center"/>
+			<Label Grid.Row="0" Grid.Column="1" Text="{Binding Event.TimeStamp}" VerticalOptions="Center"/>
+			<Label Grid.Row="1" Grid.Column="0" Text="{Binding Event.LocationText}" VerticalOptions="Center"/>
+			<Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Event.NoteDetail}" VerticalOptions="Center"/>
 		</Grid>
-		<StackLayout Padding="0,3,0,10">
-			<Label Text="{Binding Event.NoteDetail}" HorizontalOptions = "FillAndExpand" VerticalOptions = "Fill"  />
-		</StackLayout>
 		<Label Text="Attendies:" FontSize="Medium"/>
 			<ScrollView>
 				<ListView x:Name="PeopleListView" RowHeight="50" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}" VerticalOptions="FillAndExpand" HasUnevenRows="true">
