@@ -81,6 +81,9 @@ namespace Tconnect.Data.ViewModel
 				Debug.WriteLine (_selectedCal[0]);
 
 				database.InsertOrUpdateToken(new Tconnect.Data.Token("Calendar",_selectedCal[0]));
+
+				database.truncade();
+				MyCalendar.ImportCalendar();
 			}
 		}
 
