@@ -17,6 +17,7 @@ namespace Tconnect.Data
 		public long CalId { get; set;}
 
 		public Note(){
+			CalId = 0;
 		}
 		/// <summary>
 		/// Initializes a new instance of the <see cref="NoteTaker1.Notes"/> class.
@@ -31,6 +32,7 @@ namespace Tconnect.Data
 			LocationText = locationText;
 			NoteDetail = noteDetail;
 			Attendees = people;
+			CalId = 0;
 		}
 		public Note (int id, string titleText, DateTime timeStamp, string locationText = "", string noteDetail = "", string people = "")
 		{
@@ -40,6 +42,7 @@ namespace Tconnect.Data
 			LocationText = locationText;
 			NoteDetail = noteDetail;
 			Attendees = people;
+			CalId = 0;
 		}
 	}
 }
