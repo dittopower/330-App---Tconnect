@@ -113,7 +113,7 @@ namespace Tconnect.Data
 				Event.Attendees = Event.Attendees.Trim(',');
 				if(Event.CalId <= 0){
 					var cal = new MyCalendar ();
-					long newid = cal.addToSystemCal(Event.TimeStamp, Event.titleText, Event.NoteDetail, Event.LocationText, 1);
+					long newid = cal.addToSystemCal(Event.TimeStamp, Event.titleText, Event.NoteDetail, Event.LocationText);
 
 					Event.CalId = newid;
 				}else{

@@ -24,7 +24,7 @@ namespace Tconnect.Data
 		}
 
 		public List<String[]> getEvents(){
-			return calendar.getEvents ();
+			return calendar.getEvents (int.Parse(database.GetToken("Calendar").Value));
 		}
 		public void UpdateCal(){
 			if (!SyncCalendar) {
@@ -68,8 +68,8 @@ namespace Tconnect.Data
 			}
 		}
 
-		public long addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){
-			return calendar.addToSystemCal (dstart, title, desc, loc, calID);
+		public long addToSystemCal(DateTime dstart, String title, String desc, String loc){
+			return calendar.addToSystemCal (dstart, title, desc, loc, int.Parse(database.GetToken("Calendar").Value));
 		}
 
 		public DateTime mstoDateTime(String s){

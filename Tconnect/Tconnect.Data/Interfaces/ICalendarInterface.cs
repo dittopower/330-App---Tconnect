@@ -5,7 +5,7 @@ namespace Tconnect.Data
 {
 	public interface ICalendarInterface
 	{
-		List<String[]> getEvents();
+		List<String[]> getEvents(int CalID);
 
 		List<String[]> getCalendars();
 

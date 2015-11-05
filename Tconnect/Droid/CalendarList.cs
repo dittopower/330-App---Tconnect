@@ -36,9 +36,9 @@ namespace Tconnect.Droid
 
 		#region ICalendarList implementation
 
-		public List<String[]> getEvents()
+		public List<String[]> getEvents(int CalID)
 		{       
-			return calendar.getEvents();
+			return calendar.getEvents(CalID);
 		}
 
 
