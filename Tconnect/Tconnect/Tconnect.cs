@@ -109,6 +109,7 @@ namespace Tconnect
 			var database = new NoteDatabase ();
 			database.InsertOrUpdateToken(new Tconnect.Data.Token("Yammer",token));
 			database.InsertOrUpdateToken(new Tconnect.Data.Token("Calendar","1"));
+			MyCalendar.ImportCalendar ();
 			MyCalendar.ImportContacts ();
 		}
 
