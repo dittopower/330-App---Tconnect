@@ -69,13 +69,14 @@ namespace Tconnect.Data.ViewModel
 		{
 			this.navigationService = navigationService;
 			CallCommand = new Command (() => Device.OpenUri(new Uri("tel:"+Who.Phone)));
-			EmailCommand = new Command (() => Device.OpenUri(new Uri("mailto:"+Who.Email)));https://www.yammer.com/users/1550507405
+			EmailCommand = new Command (() => Device.OpenUri(new Uri("mailto:"+Who.Email)));
 			YammerCommand = new Command (() => Device.OpenUri(new Uri("https://www.yammer.com/users/"+Who.Yammer)));
 			FBCommand = new Command (() => {
 				try{
 					Device.OpenUri(new Uri("facebook://"));
 				}catch(Exception e){
 					Device.OpenUri(new Uri("https://www.facebook.com/"));
+					Debug.WriteLine(e.Message);
 				}
 			});
 			TwitCommand = new Command (() => {
@@ -83,6 +84,7 @@ namespace Tconnect.Data.ViewModel
 					Device.OpenUri(new Uri("twitter://"));
 				}catch(Exception e){
 					Device.OpenUri(new Uri("https://www.twitter.com/"));
+					Debug.WriteLine(e.Message);
 				}
 			});
 			//facebook fb://messaging?id=

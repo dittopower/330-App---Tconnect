@@ -34,7 +34,6 @@ x:Class="Tconnect.Calendar">
 			</ScrollView>
 		</StackLayout>
 		<Button Text = "+" Command = "{Binding NewNoteCommand}" VerticalOptions="End" HorizontalOptions="End" />
-		<Button Text = "import" Command = "{Binding Import}" VerticalOptions="End" HorizontalOptions="Start" />
 	
 	</StackLayout>
 </BaseView>

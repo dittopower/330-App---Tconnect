@@ -38,7 +38,6 @@ namespace Tconnect.Data.ViewModel
 
 
 		public ICommand NewNoteCommand { get; private set; }
-		public ICommand Import { get; private set; }
 
 		NoteDatabase database = new NoteDatabase ();
 		/// <summary>
@@ -48,7 +47,6 @@ namespace Tconnect.Data.ViewModel
 		{
 			this.navigationService = navigationService;
 			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
-			Import = new Command (() => joshing());
 		}
 
 		public void OnAppearing(){
@@ -66,14 +64,6 @@ namespace Tconnect.Data.ViewModel
 
 				navigationService.NavigateTo (ViewModelLocator.EventPageKey,SelectedEvent.NoteId);
 			}
-		}
-
-		private async void joshing(){
-			///Do your test import stuff here josh
-
-
-			//This next line triggers the screen to update displayed data.
-			//RaisePropertyChanged (() => EventView);
 		}
 
 	}
