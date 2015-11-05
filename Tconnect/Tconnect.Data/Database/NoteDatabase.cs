@@ -116,7 +116,7 @@ namespace Tconnect.Data
 			return database.Table<Person> ().Where (x => x.NoteId == person.NoteId).Count () > 0 
 				? database.Update (person) : database.Insert (person);
 		}
-
+		/*
 		public void tempPeople(){
 			int c = database.Table<Person> ().Count();
 			if (c < 1) {
@@ -124,7 +124,7 @@ namespace Tconnect.Data
 				InsertOrUpdatePerson(new Person ("Damon","Jones","dittopower@gmail.com","0466971872","Adhesive Tech"));
 				InsertOrUpdatePerson(new Person ("Jordan","Beak","mrsmiley95@gmail.com","04*****","Adhesive Tech"));
 			}
-		}
+		}*/
 
 
 
