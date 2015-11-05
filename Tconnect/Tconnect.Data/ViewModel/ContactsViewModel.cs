@@ -36,10 +36,11 @@ namespace Tconnect.Data.ViewModel
 		public ContactsViewModel (IMyNavigationService navigationService)
 		{
 			this.navigationService = navigationService;
+			RaisePropertyChanged (() => PeopleView);
 		}
 
 		public void OnAppearing(){
-			RaisePropertyChanged (() => PeopleView);
+			//RaisePropertyChanged (() => PeopleView);
 		}
 
 		private Person _selectedPerson;

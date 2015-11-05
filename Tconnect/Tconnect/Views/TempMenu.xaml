@@ -4,11 +4,12 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 x:Class="Tconnect.TempMenu">
 	<StackLayout>
 		<Button Text = "Sync Contacts (Takes a little bit)" Command = "{Binding ContactsCommand}" />
+		<Button Text = "Sync Calendar" Command = "{Binding CalendarCommand}" />
 		<Button Text = "Logout" Command = "{Binding LogoutCommand}" />
 		<Button Text = "Purge Database" Command = "{Binding PurgeCommand}" />
 		<Label Text="Change Calendar: "/>
 		<ScrollView>
-			<ListView x:Name="CalListView" RowHeight="80" ItemsSource="{Binding Cals}" SelectedItem="{Binding SelectedCal, Mode=TwoWay}">
+			<ListView x:Name="CalListView" RowHeight="30" ItemsSource="{Binding Cals}" SelectedItem="{Binding SelectedCal, Mode=TwoWay}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell >

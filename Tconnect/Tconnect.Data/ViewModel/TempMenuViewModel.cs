@@ -28,6 +28,7 @@ namespace Tconnect.Data.ViewModel
 		public ICommand LogoutCommand { get; private set; }
 		public ICommand ContactsCommand { get; private set; }
 		public ICommand PurgeCommand { get; private set; }
+		public ICommand CalendarCommand { get; private set; }
 
 		NoteDatabase database = new NoteDatabase ();
 
@@ -55,6 +56,10 @@ namespace Tconnect.Data.ViewModel
 			ContactsCommand = new Command (() => {
 				database.truncadePerson();
 				MyCalendar.ImportContacts();
+			});
+			CalendarCommand = new Command (() => {
+				database.truncade();
+				MyCalendar.ImportCalendar();
 			});
 			PurgeCommand = new Command (() => {
 				database.truncade();
