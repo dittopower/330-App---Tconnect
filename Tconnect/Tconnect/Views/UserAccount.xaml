@@ -2,7 +2,15 @@
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.UserAccount">
 	<StackLayout>
 		<StackLayout>
-			<Label Text="{Binding Name}" HorizontalOptions="Center" FontSize="Large"/>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="50"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*"/>
+				</Grid.ColumnDefinitions>
+				<Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
+			</Grid>
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="3*"/>
