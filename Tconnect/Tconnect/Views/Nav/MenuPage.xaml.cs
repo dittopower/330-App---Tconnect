@@ -17,7 +17,8 @@ namespace Tconnect
 				new MyMenuItem("Home",ViewModelLocator.FeedPageKey,"IcoHome"),
 				new MyMenuItem("Calendar",ViewModelLocator.CalendarPageKey,"IcoCal"),
 				new MyMenuItem("Contacts",ViewModelLocator.ContactsPageKey,"IcoCon"),
-				new MyMenuItem("Profile",ViewModelLocator.UserAccountPageKey,"IcoProf")
+				new MyMenuItem("Profile",ViewModelLocator.UserAccountPageKey,"IcoProf"),
+				new MyMenuItem("Settings",ViewModelLocator.TempMenuKey,"IcoProf")
 			};
 			menulistView.ItemsSource = mymenu;
 

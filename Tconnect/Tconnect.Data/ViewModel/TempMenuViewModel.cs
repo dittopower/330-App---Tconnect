@@ -4,6 +4,8 @@ using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Tconnect.Data.ViewModel
 {
@@ -23,12 +25,22 @@ namespace Tconnect.Data.ViewModel
 	{
 		private IMyNavigationService navigationService;
 
-		public ICommand NewEventCommand { get; private set; }
-		public ICommand EventsViewCommand { get; private set; }
-		public ICommand CalendarCommand { get; private set; }
-		public ICommand UserAccountCommand { get; private set; }
+		public ICommand LogoutCommand { get; private set; }
 		public ICommand ContactsCommand { get; private set; }
-	//	public ICommand NewEventCommand { get; private set; }
+		public ICommand PurgeCommand { get; private set; }
+
+		NoteDatabase database = new NoteDatabase ();
+
+		public ObservableCollection<String[]> Cals {
+			get {
+				var mcal = new MyCalendar();
+				//database.tempPeople ();//Delete this line when we can input real data
+				var x = mcal.getCalendars();
+				Debug.WriteLine (x [0]);
+				return new ObservableCollection<String[]> (x);
+			}
+		}
+
 
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
@@ -36,13 +48,40 @@ namespace Tconnect.Data.ViewModel
 		public TempMenuViewModel(IMyNavigationService navigationService)
 		{
 			this.navigationService = navigationService;
+			LogoutCommand = new Command (() => {
+				database.LoseToken("Yammer");
+				navigationService.NavigateTo(ViewModelLocator.FeedPageKey);
+			});
+			ContactsCommand = new Command (() => {
+				database.truncadePerson();
+				ImportContacts();
+			});
+			PurgeCommand = new Command (() => {
+				database.truncade();
+				database.truncadePerson();
+			});
 
-			NewEventCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
-			EventsViewCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.FeedPageKey));
-			CalendarCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.CalendarPageKey));
-			UserAccountCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.UserAccountPageKey));
-			ContactsCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.ContactsPageKey));
-			//NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
+		}
+
+		private async void ImportContacts(){
+			MyCalendar m = new MyCalendar ();
+			var t = Task.Factory.StartNew(()=> m.contactRequest ());
+			await t;
+			//Debug.WriteLine("done");
+		}
+
+		private String[] _selectedCal;
+		public String[] SelectedCal {
+			get{ return _selectedCal;}
+			set {
+				if (value == _selectedCal)
+					return;
+				_selectedCal = value;
+				RaisePropertyChanged ("SelectedPerson");
+				Debug.WriteLine (_selectedCal[0]);
+
+				database.InsertOrUpdateToken(new Tconnect.Data.Token("Calendar",_selectedCal[0]));
+			}
 		}
 
 	}

@@ -6,7 +6,6 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using Tconnect.Data;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 using System.Net;
 
@@ -42,7 +41,6 @@ namespace Tconnect.Data.ViewModel
 
 		public ICommand NewNoteCommand { get; private set; }
 		public ICommand Import { get; private set; }
-		public ICommand Purge { get; private set; }
 
 		NoteDatabase database = new NoteDatabase ();
 		/// <summary>
@@ -53,7 +51,6 @@ namespace Tconnect.Data.ViewModel
 			this.navigationService = navigationService;
 			NewNoteCommand = new Command (() => this.navigationService.NavigateTo (ViewModelLocator.EventCreatePageKey));
 			Import = new Command (() => joshing());
-			Purge = new Command (() => {database.truncade(); database.truncadePerson(); RaisePropertyChanged (() => EventView);} );
 		}
 
 		public void OnAppearing(){
@@ -76,12 +73,7 @@ namespace Tconnect.Data.ViewModel
 		private async void joshing(){
 			///Do your test import stuff here josh
 
-			MyCalendar m = new MyCalendar ();
 
-			var t = Task.Factory.StartNew(()=> m.contactRequest ());
-			await t;
-			//InsertOrUpdatePerson(new Person ("Josh","Henley","roflmonsterjh@gmail.com","04*****","Adhesive Tech"));
-			Debug.WriteLine("done");
 			//This next line triggers the screen to update displayed data.
 			//RaisePropertyChanged (() => EventView);
 		}

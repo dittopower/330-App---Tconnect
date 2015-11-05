@@ -87,7 +87,15 @@ namespace Tconnect
 
 		//Yammer auth stuff
 		public static bool IsLoggedIn {
-			get { return !string.IsNullOrWhiteSpace(_Token); }
+			get { 
+				var database = new NoteDatabase ();
+				if (database.HasToken ("Yammer")) {
+					return !string.IsNullOrWhiteSpace (_Token);
+				} else {
+					_Token = null;
+					return false;
+				}
+			}
 		}
 
 		static string _Token;
@@ -100,6 +108,7 @@ namespace Tconnect
 			_Token = token;
 			var database = new NoteDatabase ();
 			database.InsertOrUpdateToken(new Tconnect.Data.Token("Yammer",token));
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("Calendar","1"));
 		}
 
 		public static Action SuccessfulLoginAction

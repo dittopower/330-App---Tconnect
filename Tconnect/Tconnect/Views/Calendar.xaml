@@ -35,7 +35,6 @@ x:Class="Tconnect.Calendar">
 		</StackLayout>
 		<Button Text = "+" Command = "{Binding NewNoteCommand}" VerticalOptions="End" HorizontalOptions="End" />
 		<Button Text = "import" Command = "{Binding Import}" VerticalOptions="End" HorizontalOptions="Start" />
-		<Button Text = "Purge" Command = "{Binding Purge}" VerticalOptions="End" HorizontalOptions="Center" />
 	
 	</StackLayout>
 </BaseView>

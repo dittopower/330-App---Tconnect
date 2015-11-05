@@ -143,6 +143,10 @@ namespace Tconnect.Data
 			return (database.Table<Token> ().Where (t => t.Service == key).Count () > 0);
 		}
 
+		public int LoseToken(string key){
+			return database.Table<Token> ().Delete(t => t.Service == key); 
+		}
+
 	}
 }
 
