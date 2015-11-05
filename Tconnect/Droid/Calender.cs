@@ -233,6 +233,63 @@ namespace Tconnect.Droid
 
 		}//contactRequest
 
+		public String[] getUserDeets(String token){
+			Console.WriteLine ("into the belly of it m8");
+			String output = httpRequest(token,"https://www.yammer.com/api/v1/users/current.json");
+			Console.WriteLine ("we dun it now");
+			if (output != "") {
+				
+				//JSONArray jObject = new JSONArray (output); // json
+				String[] details;
+
+				JSONObject data, tmp;
+				//String[] items;
+				String uid, fname, lname, email, phone = "", org, profilepicture;
+				//maybe use less memory because im using heaps apparently
+
+				data = new JSONObject (output); // get data object
+
+				uid = data.GetString ("id");
+				fname = data.GetString ("first_name");
+				lname = data.GetString ("last_name");
+				email = data.GetString ("email");
+				profilepicture = data.GetString ("mugshot_url_template");
+				profilepicture = profilepicture.Replace ("{width}x{height}", "300x300");
+
+				tmp = data.GetJSONObject ("contact");
+				phone = tmp.GetString ("phone_numbers");
+
+				try {
+					tmp = new JSONArray (phone).GetJSONObject (0);
+					phone = tmp.GetString ("number");
+				} catch {
+					phone = "";
+				}
+
+				org = data.GetString ("network_name");
+
+				details = new String[] { fname, lname, email, phone, org, uid, profilepicture };
+				tmp.Dispose ();
+				data.Dispose ();
+
+				fname = "";
+				lname = "";
+				email = "";
+				phone = "";
+				org = "";
+				uid = "";
+				profilepicture = "";
+
+				//jObject.Dispose ();
+
+				return details;
+
+			}
+			String[] gg = null;
+			return gg;
+
+		}//getuserdeets
+
 		public String httpRequest(String token, String url){
 			try{
 				HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;  

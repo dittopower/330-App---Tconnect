@@ -54,6 +54,10 @@ namespace Tconnect.Data
 			return calendar.getCalendars ();
 		}
 
+		public String[] getUserDeets(String token){
+			return calendar.getUserDeets (token);
+		}
+
 		public void contactRequest(){
 			if (!SyncContacts) {
 				SyncContacts = true;

@@ -72,11 +72,19 @@ namespace Tconnect.Data.ViewModel
 
 		public void OnAppearing(){
 			//Debug.WriteLine (id);
+			var database = new NoteDatabase ();
 			if (id > 0) {
-				var database = new NoteDatabase ();
 				Who = database.GetPerson (id);
 			} else {
-				Who = new Person ("John", "Smith", "you@email.com", "0466 666 666", "QUT", "");
+				String fname = database.GetToken ("fname").Value;
+				String lname = database.GetToken ("lname").Value;
+				String email = database.GetToken ("email").Value;
+				String phone = database.GetToken ("phone").Value;
+				String org = database.GetToken ("org").Value;
+				String uid = database.GetToken ("uid").Value;
+				String profilepicture = database.GetToken ("profilepicture").Value;
+
+				Who = new Person (fname, lname, email, phone, org, uid, profilepicture);
 			}
 			RaisePropertyChanged (() => Name);
 			RaisePropertyChanged (() => Email);

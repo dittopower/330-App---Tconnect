@@ -111,6 +111,26 @@ namespace Tconnect
 			database.InsertOrUpdateToken(new Tconnect.Data.Token("Calendar","1"));
 			MyCalendar.ImportCalendar ();
 			MyCalendar.ImportContacts ();
+
+			MyCalendar cal = new MyCalendar ();
+			Debug.WriteLine ("ruight herjelkfjsd tohooooooooooooo");
+			String[] s = cal.getUserDeets (token);
+
+
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("fname",s[0]));
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("lname",s[1]));
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("email",s[2]));
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("phone",s[3]));
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("org",s[4]));
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("uid",s[5]));
+			database.InsertOrUpdateToken(new Tconnect.Data.Token("profilepicture",s[6]));
+
+			// { fname, lname, email, phone, org, uid, profilepicture };
+			Debug.WriteLine ("oi we got here m8");
+			//Person p = new Person (s [0], s [1], s [2], s [3], s [4], s [5], s [6]);
+			//p.NoteId = 0;
+			//database.InsertOrUpdatePerson (p);
+			//Debug.WriteLine ("afftaahh:: " + database.GetPerson(0).Name);
 		}
 
 		public static Action SuccessfulLoginAction
