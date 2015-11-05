@@ -58,6 +58,9 @@ namespace Tconnect.Data.ViewModel
 
 		public ICommand CallCommand { get; private set; }
 		public ICommand EmailCommand { get; private set; }
+		public ICommand YammerCommand { get; private set; }
+		public ICommand FBCommand { get; private set; }
+		public ICommand TwitCommand { get; private set; }
 
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
@@ -66,7 +69,22 @@ namespace Tconnect.Data.ViewModel
 		{
 			this.navigationService = navigationService;
 			CallCommand = new Command (() => Device.OpenUri(new Uri("tel:"+Who.Phone)));
-			EmailCommand = new Command (() => Device.OpenUri(new Uri("mailto:"+Who.Email)));
+			EmailCommand = new Command (() => Device.OpenUri(new Uri("mailto:"+Who.Email)));https://www.yammer.com/users/1550507405
+			YammerCommand = new Command (() => Device.OpenUri(new Uri("https://www.yammer.com/users/"+Who.Yammer)));
+			FBCommand = new Command (() => {
+				try{
+					Device.OpenUri(new Uri("facebook://"));
+				}catch(Exception e){
+					Device.OpenUri(new Uri("https://www.facebook.com/"));
+				}
+			});
+			TwitCommand = new Command (() => {
+				try{
+					Device.OpenUri(new Uri("twitter://"));
+				}catch(Exception e){
+					Device.OpenUri(new Uri("https://www.twitter.com/"));
+				}
+			});
 			//facebook fb://messaging?id=
 		}
 

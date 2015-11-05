@@ -17,6 +17,7 @@
 					<RowDefinition Height="25"/>
 					<RowDefinition Height="25"/>
 					<RowDefinition Height="25"/>
+					<RowDefinition Height="25"/>
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="1*"/>
@@ -36,6 +37,23 @@
 				        <TapGestureRecognizer Command="{Binding CallCommand}"/>
 				    </Label.GestureRecognizers>
 				</Label>
+				<StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+					<Label Text="Yammer" VerticalOptions="Center" TextColor="#0072c6" BackgroundColor="White">
+					    <Label.GestureRecognizers>
+					        <TapGestureRecognizer Command="{Binding YammerCommand}"/>
+					    </Label.GestureRecognizers>
+					</Label>
+					<Label Text="Coming Soon" VerticalOptions="Center" TextColor="White" BackgroundColor="#3a5795">
+					    <Label.GestureRecognizers>
+					        <TapGestureRecognizer Command="{Binding FBCommand}"/>
+					    </Label.GestureRecognizers>
+					</Label>
+					<Label Text="Coming Soon" VerticalOptions="Center" TextColor="#55acee" BackgroundColor="White">
+					    <Label.GestureRecognizers>
+					        <TapGestureRecognizer Command="{Binding TwitCommand}"/>
+					    </Label.GestureRecognizers>
+					</Label>
+				</StackLayout>
 			</Grid>
 		</StackLayout>
 		<Label Text="Shared Events"/>
