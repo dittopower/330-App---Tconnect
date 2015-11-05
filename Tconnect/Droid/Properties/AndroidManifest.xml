@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" package="com.adhesivetech.tconnect" android:versionCode="20">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" package="com.adhesivetech.tconnect" android:versionCode="30">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="22" />
-	<application android:label="Tconnect" android:theme="@android:style/Theme.Material.Light"></application>
+	<application android:label="Tconnect" android:theme="@android:style/Theme.Material.Light" android:icon="@drawable/icon"></application>
 	<uses-permission android:name="android.permission.READ_CALENDAR" />
 	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
 	<uses-permission android:name="android.permission.INTERNET" />
