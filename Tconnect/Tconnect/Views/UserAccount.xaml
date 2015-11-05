@@ -37,24 +37,36 @@
 				        <TapGestureRecognizer Command="{Binding CallCommand}"/>
 				    </Label.GestureRecognizers>
 				</Label>
-				<StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-					<Label Text="Yammer" VerticalOptions="Center" TextColor="#0072c6" BackgroundColor="White">
-					    <Label.GestureRecognizers>
-					        <TapGestureRecognizer Command="{Binding YammerCommand}"/>
-					    </Label.GestureRecognizers>
-					</Label>
-					<Label Text="Coming Soon" VerticalOptions="Center" TextColor="White" BackgroundColor="#3a5795">
-					    <Label.GestureRecognizers>
-					        <TapGestureRecognizer Command="{Binding FBCommand}"/>
-					    </Label.GestureRecognizers>
-					</Label>
-					<Label Text="Coming Soon" VerticalOptions="Center" TextColor="#55acee" BackgroundColor="White">
-					    <Label.GestureRecognizers>
-					        <TapGestureRecognizer Command="{Binding TwitCommand}"/>
-					    </Label.GestureRecognizers>
-					</Label>
-				</StackLayout>
 			</Grid>
+			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+					<StackLayout Padding="1,1,1,1" BackgroundColor="Gray">
+						<StackLayout Padding="5,5,5,5"  BackgroundColor="White">
+							<Label Text="Yammer" VerticalOptions="Center" TextColor="#0072c6">
+							    <Label.GestureRecognizers>
+							        <TapGestureRecognizer Command="{Binding YammerCommand}"/>
+							    </Label.GestureRecognizers>
+							</Label>
+						</StackLayout>
+					</StackLayout>
+					<StackLayout Padding="1,1,1,1" BackgroundColor="Gray">
+						<StackLayout Padding="5,5,5,5"  BackgroundColor="#3a5795">
+							<Label Text="Coming Soon" VerticalOptions="Center" TextColor="White" >
+							    <Label.GestureRecognizers>
+							        <TapGestureRecognizer Command="{Binding FBCommand}"/>
+							    </Label.GestureRecognizers>
+							</Label>
+						</StackLayout>
+					</StackLayout>
+					<StackLayout Padding="1,1,1,1" BackgroundColor="Gray">
+						<StackLayout Padding="5,5,5,5"  BackgroundColor="White">
+							<Label Text="Coming Soon" VerticalOptions="Center" TextColor="#55acee">
+							    <Label.GestureRecognizers>
+							        <TapGestureRecognizer Command="{Binding TwitCommand}"/>
+							    </Label.GestureRecognizers>
+							</Label>
+						</StackLayout>
+					</StackLayout>
+				</StackLayout>
 		</StackLayout>
 		<Label Text="Shared Events"/>
 		<ScrollView>
