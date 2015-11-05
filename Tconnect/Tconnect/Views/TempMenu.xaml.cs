@@ -14,7 +14,7 @@ namespace Tconnect
 			InitializeComponent ();
 			base.Init ();
 			BindingContext = App.Locator.TempMenu;
-			Title = "Temporary Menu";
+			Title = "Settings";
 		}
 
 		protected void ButtonClicked(object sender, EventArgs e)

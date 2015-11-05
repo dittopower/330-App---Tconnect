@@ -161,7 +161,6 @@ namespace Tconnect.Droid
 
 			if (output != "") {
 				JSONArray jObject = new JSONArray (output); // json
-				JSONArray arrTemp;
 				List<String[]> ppl = new List<String[]> ();
 
 				//int c = 0;
