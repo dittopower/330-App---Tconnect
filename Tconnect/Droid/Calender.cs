@@ -151,7 +151,7 @@ namespace Tconnect.Droid
 				//int c = 0;
 				JSONObject data, tmp;
 				String[] items;
-				String uid,fname,lname,email,phone="",org;
+				String uid,fname,lname,email,phone="",org,profilepicture;
 				//maybe use less memory because im using heaps apparently
 
 				for (int i = 0; i < jObject.Length (); i++) {
@@ -159,31 +159,42 @@ namespace Tconnect.Droid
 						data = jObject.GetJSONObject (i); // get data object
 						uid = data.GetString ("id");
 
-						//userdeets = httpRequest (token, "https://www.yammer.com/api/v1/users/" + uid + ".json");
+					//userdeets = httpRequest (token, "https://www.yammer.com/api/v1/users/" + uid + ".json");
 
-						//if (userdeets != "") {
-							//Console.WriteLine (uid);
+					//if (userdeets != "") {
+						//Console.WriteLine (uid);
 
-							//person = new JSONObject (userdeets); // get data object
+						//person = new JSONObject (userdeets); // get data object
 
-							fname = data.GetString ("first_name");
-							lname = data.GetString ("last_name");
-							email = data.GetString ("email");
+						fname = data.GetString ("first_name");
+						lname = data.GetString ("last_name");
+						email = data.GetString ("email");
+						profilepicture = data.GetString ("mugshot_url_template");
+						profilepicture = profilepicture.Replace ("{width}x{height}", "300x300");
 
+						tmp = data.GetJSONObject ("contact");
+						phone = tmp.GetString ("phone_numbers");
 
-							tmp = data.GetJSONObject ("contact");
-							phone = tmp.GetString ("phone_numbers");
+						org = data.GetString ("network_name");
 
-							org = data.GetString ("network_name");
+					//Console.WriteLine (fname + " : " + lname + " : " + email + " : " + phone + " : " + org + " : " + uid);
 
-							//Console.WriteLine (fname + " : " + lname + " : " + email + " : " + phone + " : " + org + " : " + uid);
-
-							items = new String[] { fname, lname, email, phone, org, uid };
-							ppl.Add (items);
+						items = new String[] { fname, lname, email, phone, org, uid, profilepicture };
+						ppl.Add (items);
 						tmp.Dispose ();
 						data.Dispose ();
-						//}//individual users
-						//c++;
+
+						fname = "";
+						lname = "";
+						email = "";
+						phone = "";
+						org = "";
+						uid = "";
+						profilepicture = "";
+
+					//}//individual users
+					//c++;
+
 					}//limit
 
 				}//loop

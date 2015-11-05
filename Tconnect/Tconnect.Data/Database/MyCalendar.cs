@@ -33,14 +33,12 @@ namespace Tconnect.Data
 				 * 4=desc
 				 * 5=loc
 				 */
-
 				n = new Note (e[1],mstoDateTime(e[2]), e[5], e[4],"");
 				n.CalId = int.Parse (e [0]);
 				database.CalendarInsertOrUpdateNote(n);
 			}
 		}
-
-
+			
 		public List<String[]> getCalendars(){
 			return calendar.getCalendars ();
 		}
@@ -48,7 +46,7 @@ namespace Tconnect.Data
 		public void contactRequest(){
 			List<String[]> ppl = calendar.contactRequest (database.GetToken("Yammer").Value);
 			foreach(String[] s in ppl){
-				database.InsertOrUpdatePerson (new Person(s[0],s[1],s[2],s[3],s[4],s[5]));
+				database.InsertOrUpdatePerson (new Person(s[0],s[1],s[2],s[3],s[4],s[5],s[6]));
 				//Debug.WriteLine ("Adding " + s[5]);
 			}
 		}
@@ -68,4 +66,3 @@ namespace Tconnect.Data
 
 	}
 }
-

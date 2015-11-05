@@ -38,6 +38,9 @@ namespace Tconnect.Data.ViewModel
 		public string Org{
 			get{return Who.Org; }
 		}
+		public string ProfilePicture{
+			get{ return Who.ProfilePicture; }
+		}
 
 		private int id;
 		public int ID{
@@ -79,6 +82,7 @@ namespace Tconnect.Data.ViewModel
 			RaisePropertyChanged (() => Email);
 			RaisePropertyChanged (() => Phone);
 			RaisePropertyChanged (() => Org);
+			RaisePropertyChanged (() => ProfilePicture);
 			RaisePropertyChanged (() => EventView);
 		}
 
