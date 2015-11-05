@@ -47,8 +47,9 @@ namespace Tconnect
 					Debug.WriteLine (_Token);
 				}
 			}
-
-			MyCalendar.ImportCalendar ();
+			if (IsLoggedIn) {
+				MyCalendar.ImportCalendar ();
+			}
 		}
 
 		private static ViewModelLocator _locator;
