@@ -67,7 +67,10 @@ namespace Tconnect.Droid
 			public const int IcoProf = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int ProfileImage = 2130837510;
+			public const int IcoSet = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int ProfileImage = 2130837511;
 			
 			static Drawable()
 			{
