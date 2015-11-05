@@ -76,15 +76,19 @@ namespace Tconnect.Data
 			return calendar.addToSystemCal (dstart, title, desc, loc, int.Parse(database.GetToken("Calendar").Value));
 		}
 
+		public void removeSystemCal(long calid){
+			calendar.removeSystemCal (calid);
+		}
+
 		public DateTime mstoDateTime(String s){
 			//Debug.WriteLine (s);
 			Double tt = Convert.ToDouble (s);
 			DateTime UnixStartDate = new DateTime(1970, 1, 1);
 			UnixStartDate = UnixStartDate.AddMilliseconds (tt);
-			UnixStartDate = UnixStartDate.AddHours(20);
+			//UnixStartDate = UnixStartDate.AddHours(20);
 			return UnixStartDate;
 		}
-
+		//dsfds*************************************************************************************
 
 
 		//Async methods

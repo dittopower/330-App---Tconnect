@@ -50,6 +50,10 @@ namespace Tconnect.Droid
 			return calendar.addToSystemCal(dstart, title, desc, loc, calID);
 		}
 
+		public void removeSystemCal(long calid){
+			calendar.removeSystemCal (calid);
+		}
+
 		public String[] getUserDeets(String token){
 			return calendar.getUserDeets (token);
 		}

@@ -145,6 +145,12 @@ namespace Tconnect.Droid
 
 		}
 
+		public void removeSystemCal(long calid){
+
+			Forms.Context.ApplicationContext.ContentResolver.Delete (CalendarContract.Events.ContentUri, "_id="+calid, null);
+			//Forms.Context.ApplicationContext.ContentResolver.Insert(CalendarContract.Events.ContentUri, calEvent);
+		}
+
 		public static long getNewEventId(){  
 			ICursor cursor = Forms.Context.ApplicationContext.ContentResolver.Query (CalendarContract.Events.ContentUri, new String [] {"MAX(_id) as max_id"}, null, null, "_id");
 			cursor.MoveToFirst ();

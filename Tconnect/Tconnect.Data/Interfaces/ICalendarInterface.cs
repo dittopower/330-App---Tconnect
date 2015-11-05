@@ -11,6 +11,8 @@ namespace Tconnect.Data
 
 		long addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID);
 
+		void removeSystemCal (long calid);
+
 		String[] getUserDeets(String token);
 
 		List<String[]> contactRequest (String token);

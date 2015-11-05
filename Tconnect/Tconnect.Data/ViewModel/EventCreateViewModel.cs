@@ -111,14 +111,15 @@ namespace Tconnect.Data
 					Event.Attendees += p.NoteId + ",";
 				}
 				Event.Attendees = Event.Attendees.Trim(',');
-				if(Event.CalId <= 0){
-					var cal = new MyCalendar ();
-					long newid = cal.addToSystemCal(Event.TimeStamp, Event.titleText, Event.NoteDetail, Event.LocationText);
+				var cal = new MyCalendar ();
 
-					Event.CalId = newid;
-				}else{
-					//update calendar
+				if(! (Event.CalId <= 0)){
+					cal.removeSystemCal(Event.CalId);
 				}
+					
+				long newid = cal.addToSystemCal(Event.TimeStamp, Event.titleText, Event.NoteDetail, Event.LocationText);
+				Event.CalId = newid;
+
 				database.InsertOrUpdateNote(Event);
 				navigationService.GoBack();
 			});
