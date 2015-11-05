@@ -75,6 +75,7 @@ namespace Tconnect.Droid
 			}
 
 			cursor.Close();
+			cursor.Dispose ();
 
 			return things;
 		}
@@ -106,6 +107,7 @@ namespace Tconnect.Droid
 			}
 
 			cursor.Close();
+			cursor.Dispose ();
 
 			return calendars;
 
@@ -158,6 +160,7 @@ namespace Tconnect.Droid
 			long max_val = cursor.GetLong(cursor.GetColumnIndex("max_id"));
 
 			cursor.Close();
+			cursor.Dispose ();
 
 			return max_val+1;
 		}
