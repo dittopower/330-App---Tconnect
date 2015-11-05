@@ -14,13 +14,14 @@
 										</Grid.RowDefinitions>
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="1*"/>
-											<ColumnDefinition Width="3*"/>
+											<ColumnDefinition Width="2*"/>
+											<ColumnDefinition Width="2*"/>
 										</Grid.ColumnDefinitions>
 
 										<Image Grid.RowSpan="2" Grid.Column="0" HorizontalOptions="Start" Source="ProfileImage.jpg" WidthRequest="300" HeightRequest="300"/>
-										<Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1"/>
-										<Label Text="{Binding Lname}"  Grid.Row="0" Grid.Column="1"/>
-										<Label Text="{Binding Org}"  Grid.Row="1" Grid.Column="1"/>
+										<Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" FontSize="Large"/>
+										<Label Text="{Binding Lname}"  Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" FontSize="Large"/>
+										<Label Text="{Binding Org}"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
 									</Grid>
 								</ViewCell>
 							</DataTemplate>
