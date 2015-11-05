@@ -40,10 +40,11 @@ namespace Tconnect.Droid
 				CalendarContract.Events.InterfaceConsts.Dtstart,
 				CalendarContract.Events.InterfaceConsts.Dtend,
 				CalendarContract.Events.InterfaceConsts.Description,
-				CalendarContract.Events.InterfaceConsts.EventLocation
+				CalendarContract.Events.InterfaceConsts.EventLocation,
+				CalendarContract.Events.InterfaceConsts.EventTimezone
 			};
 			//Date d = new Date ();
-			Java.Util.Calendar c = Java.Util.Calendar.GetInstance(Java.Util.TimeZone.GetTimeZone("AEST"));
+			Java.Util.Calendar c = Java.Util.Calendar.GetInstance(Java.Util.TimeZone.GetTimeZone("Australia/Brisbane"));
 
 			c.Add(CalendarField.Month, -1);
 
@@ -65,7 +66,7 @@ namespace Tconnect.Droid
 					String Dend = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.Dtend));
 					String desc = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.Description));
 					String loc = cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.EventLocation));
-
+					Console.WriteLine(cursor.GetString(cursor.GetColumnIndex( CalendarContract.Events.InterfaceConsts.EventTimezone)));
 					things.Add(new String[] {calid,title,Dstart,Dend,desc,loc});
 
 					//Console.WriteLine("ID: " + calid);
@@ -133,7 +134,7 @@ namespace Tconnect.Droid
 
 			calEvent.Put(CalendarContract.Events.InterfaceConsts.Description, desc);
 			calEvent.Put(CalendarContract.Events.InterfaceConsts.EventLocation, loc);
-			calEvent.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "AEST");//fuck timezones, who even needs them
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "Australia/Brisbane");//fuck timezones, who even needs them
 
 			long newid = getNewEventId ();
 			calEvent.Put(CalendarContract.Events.InterfaceConsts.Id, newid);

@@ -29,7 +29,7 @@ x:Class="Tconnect.CreateEvent">
 		<Entry x:Name = "DetailsEditor" Placeholder="Description" Text="{Binding EventDetails, Mode=TwoWay}"/>
 		<Button HorizontalOptions = "CenterAndExpand" Text="Save" Command = "{Binding SaveNoteCommand}"/>
 		<Label Text="Invited"/>
-			<ScrollView HeightRequest="150" >
+			<ScrollView HeightRequest="130" MinimumHeightRequest="110">
 				<ListView x:Name="AttendeesListView" RowHeight="50" ItemsSource="{Binding People, Mode=TwoWay}" SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
 					<ListView.ItemTemplate>
 						<DataTemplate>

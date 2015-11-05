@@ -57,6 +57,7 @@ namespace Tconnect.Data
 				people = new List<Person> ();
 				if (id > 0) {
 					var database = new NoteDatabase ();
+					Debug.WriteLine(database.GetNote(id).TimeStamp);
 					Event = database.GetNote (id);
 				//	Debug.WriteLine ("This");
 					//Debug.WriteLine (Event.Attendees);
@@ -116,11 +117,13 @@ namespace Tconnect.Data
 				if(! (Event.CalId <= 0)){
 					cal.removeSystemCal(Event.CalId);
 				}
-					
+				//Debug.WriteLine(Event.TimeStamp);
 				long newid = cal.addToSystemCal(Event.TimeStamp, Event.titleText, Event.NoteDetail, Event.LocationText);
 				Event.CalId = newid;
-
+				//Debug.WriteLine(Event.TimeStamp);
+				Event.TimeStamp = Event.TimeStamp.AddHours(10);//stop the database messing up dates
 				database.InsertOrUpdateNote(Event);
+				//Debug.WriteLine(database.GetNote(id).TimeStamp);
 				navigationService.GoBack();
 			});
 		}

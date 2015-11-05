@@ -43,6 +43,8 @@ namespace Tconnect.Data
 					 */
 					n = new Note (e [1], mstoDateTime (e [2]), e [5], e [4], "");
 					n.CalId = int.Parse (e [0]);
+					Debug.WriteLine (n.titleText);
+					Debug.WriteLine (n.TimeStamp);
 					database.CalendarInsertOrUpdateNote (n);
 				}
 
@@ -85,7 +87,7 @@ namespace Tconnect.Data
 			Double tt = Convert.ToDouble (s);
 			DateTime UnixStartDate = new DateTime(1970, 1, 1);
 			UnixStartDate = UnixStartDate.AddMilliseconds (tt);
-			//UnixStartDate = UnixStartDate.AddHours(20);
+			UnixStartDate = UnixStartDate.AddHours(20);//Account for weird time loss
 			return UnixStartDate;
 		}
 		//dsfds*************************************************************************************
