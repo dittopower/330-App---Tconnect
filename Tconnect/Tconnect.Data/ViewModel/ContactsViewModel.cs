@@ -42,7 +42,6 @@ namespace Tconnect.Data.ViewModel
 			RaisePropertyChanged (() => PeopleView);
 		}
 
-
 		private Person _selectedPerson;
 		public Person SelectedPerson {
 			get{ return _selectedPerson;}

@@ -60,7 +60,7 @@ namespace Tconnect.Data
 
 				List<String[]> ppl = calendar.contactRequest (database.GetToken ("Yammer").Value);
 				foreach (String[] s in ppl) {
-					database.InsertOrUpdatePerson (new Person (s [0], s [1], s [2], s [3], s [4], s [5], s [6]));
+					database.InsertOrUpdatePerson (new Person (s [0], s [1], s [2], s [3], s [4], s [5], s [6],s[7]));
 					//Debug.WriteLine ("Adding " + s[5]);
 				}
 

@@ -15,6 +15,7 @@ namespace Tconnect.Data
 		public string Yammer { get; set; }
 		public string Org { get; set; }
 		public string ProfilePicture { get; set; }
+		public string MiniProfilePicture { get; set; }
 
 		public Person(){
 		}
@@ -24,7 +25,7 @@ namespace Tconnect.Data
 		/// <param name="titleText">Title text.</param>
 		/// <param name="timeStamp">Time stamp.</param>
 		/// <param name="actionRequiredFlag">Action required flag.</param>
-		public Person (string name, string lname = "", string email = "", string phone = "", string org = "", string yammer = "", string profilepicture="ProfileImage.jpg")
+		public Person (string name, string lname = "", string email = "", string phone = "", string org = "", string yammer = "", string profilepicture="ProfileImage.jpg", string miniprofilepicture="ProfileImage.jpg")
 		{
 			Name = name;
 			Email = email;
@@ -33,6 +34,7 @@ namespace Tconnect.Data
 			Yammer = yammer;
 			Org = org;
 			ProfilePicture = profilepicture;
+			MiniProfilePicture = miniprofilepicture;
 		}
 	}
 }

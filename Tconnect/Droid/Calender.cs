@@ -161,16 +161,17 @@ namespace Tconnect.Droid
 
 			if (output != "") {
 				JSONArray jObject = new JSONArray (output); // json
+				JSONArray arrTemp;
 				List<String[]> ppl = new List<String[]> ();
 
 				//int c = 0;
 				JSONObject data, tmp;
 				String[] items;
-				String uid,fname,lname,email,phone="",org,profilepicture;
+				String uid,fname,lname,email,phone="",org,profilepicture,miniprofilepicture;
 				//maybe use less memory because im using heaps apparently
 
 				for (int i = 0; i < jObject.Length (); i++) {
-					if(i < 8){//limit for now
+					//if(i < 8){//limit for now
 						data = jObject.GetJSONObject (i); // get data object
 						uid = data.GetString ("id");
 
@@ -187,14 +188,24 @@ namespace Tconnect.Droid
 						profilepicture = data.GetString ("mugshot_url_template");
 						profilepicture = profilepicture.Replace ("{width}x{height}", "300x300");
 
+						miniprofilepicture = data.GetString ("mugshot_url");
+
 						tmp = data.GetJSONObject ("contact");
 						phone = tmp.GetString ("phone_numbers");
+
+						try{
+							tmp = new JSONArray (phone).GetJSONObject (0);
+							phone = tmp.GetString ("number");
+						}
+						catch{
+							phone = "";
+						}
 
 						org = data.GetString ("network_name");
 
 					//Console.WriteLine (fname + " : " + lname + " : " + email + " : " + phone + " : " + org + " : " + uid);
 
-						items = new String[] { fname, lname, email, phone, org, uid, profilepicture };
+						items = new String[] { fname, lname, email, phone, org, uid, profilepicture, miniprofilepicture };
 						ppl.Add (items);
 						tmp.Dispose ();
 						data.Dispose ();
@@ -210,7 +221,7 @@ namespace Tconnect.Droid
 					//}//individual users
 					//c++;
 
-					}//limit
+					//}//limit
 
 				}//loop
 				jObject.Dispose();
