@@ -27,7 +27,7 @@ namespace Tconnect.Data.ViewModel
 		public ObservableCollection<Person> PeopleView {
 			get {
 				var database = new NoteDatabase ();
-				database.tempPeople ();//Delete this line when we can input real data
+				//database.tempPeople ();//Delete this line when we can input real data
 				var x = database.GetAllPeople ();
 				return new ObservableCollection<Person> (x);
 			}

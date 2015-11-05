@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using Tconnect.Data;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 using System.Net;
 
@@ -72,22 +73,17 @@ namespace Tconnect.Data.ViewModel
 			}
 		}
 
-		private void joshing(){
+		private async void joshing(){
 			///Do your test import stuff here josh
 
 			MyCalendar m = new MyCalendar ();
 
-			List<String[]> ppl = m.contactRequest (database.GetToken("Yammer").Value);
-
-			foreach(String[] s in ppl){
-				database.InsertOrUpdatePerson (new Person(s[0],s[1],s[2],s[3],s[4],s[5]));
-				Debug.WriteLine ("Adding " + s[5]);
-			}
-
+			var t = Task.Factory.StartNew(()=> m.contactRequest ());
+			await t;
 			//InsertOrUpdatePerson(new Person ("Josh","Henley","roflmonsterjh@gmail.com","04*****","Adhesive Tech"));
-
+			Debug.WriteLine("done");
 			//This next line triggers the screen to update displayed data.
-			RaisePropertyChanged (() => EventView);
+			//RaisePropertyChanged (() => EventView);
 		}
 
 	}

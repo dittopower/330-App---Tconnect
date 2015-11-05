@@ -104,7 +104,7 @@ namespace Tconnect.Data
 	//Contacts
 
 		public List<Person> GetAllPeople(){
-			var items = database.Table<Person> ().ToList<Person>();
+			var items = database.Table<Person> ().OrderBy (t => t.Lname).OrderBy (t => t.Name).ToList<Person>();
 			return items;
 		}
 

@@ -45,8 +45,12 @@ namespace Tconnect.Data
 			return calendar.getCalendars ();
 		}
 
-		public List<String[]> contactRequest(String token){
-			return calendar.contactRequest (token);
+		public void contactRequest(){
+			List<String[]> ppl = calendar.contactRequest (database.GetToken("Yammer").Value);
+			foreach(String[] s in ppl){
+				database.InsertOrUpdatePerson (new Person(s[0],s[1],s[2],s[3],s[4],s[5]));
+				//Debug.WriteLine ("Adding " + s[5]);
+			}
 		}
 
 		public void addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){

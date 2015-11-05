@@ -148,14 +148,14 @@ namespace Tconnect.Droid
 				JSONArray jObject = new JSONArray (output); // json
 				List<String[]> ppl = new List<String[]> ();
 
-				int c = 0;
-				JSONObject data, person, tmp;
+				//int c = 0;
+				JSONObject data, tmp;
 				String[] items;
-				String uid,fname,lname,email,phone="",org,userdeets;
+				String uid,fname,lname,email,phone="",org;
 				//maybe use less memory because im using heaps apparently
 
 				for (int i = 0; i < jObject.Length (); i++) {
-					if(c < 8){//limit for now
+					if(i < 8){//limit for now
 						data = jObject.GetJSONObject (i); // get data object
 						uid = data.GetString ("id");
 
@@ -180,12 +180,14 @@ namespace Tconnect.Droid
 
 							items = new String[] { fname, lname, email, phone, org, uid };
 							ppl.Add (items);
-						
+						tmp.Dispose ();
+						data.Dispose ();
 						//}//individual users
-						c++;
+						//c++;
 					}//limit
 
 				}//loop
+				jObject.Dispose();
 
 				return ppl;
 
