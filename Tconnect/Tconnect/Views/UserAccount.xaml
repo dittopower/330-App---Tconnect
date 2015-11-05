@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <BaseView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Tconnect.UserAccount">
-	<StackLayout>
+	<StackLayout Padding="10,10,10,10">
 		<StackLayout>
-			<Grid Padding="10,10,10,10">
+			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="30"/>
 				</Grid.RowDefinitions>
@@ -12,7 +12,7 @@
 				<Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
 			</Grid>
 			<Image Source="{Binding ProfilePicture}"/>
-			<Grid Padding="10,10,10,10">
+			<Grid  >
 				<Grid.RowDefinitions>
 					<RowDefinition Height="25"/>
 					<RowDefinition Height="25"/>
