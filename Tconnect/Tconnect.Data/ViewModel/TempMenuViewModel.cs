@@ -54,7 +54,7 @@ namespace Tconnect.Data.ViewModel
 			});
 			ContactsCommand = new Command (() => {
 				database.truncadePerson();
-				ImportContacts();
+				MyCalendar.ImportContacts();
 			});
 			PurgeCommand = new Command (() => {
 				database.truncade();
@@ -63,12 +63,7 @@ namespace Tconnect.Data.ViewModel
 
 		}
 
-		private async void ImportContacts(){
-			MyCalendar m = new MyCalendar ();
-			var t = Task.Factory.StartNew(()=> m.contactRequest ());
-			await t;
-			//Debug.WriteLine("done");
-		}
+
 
 		private String[] _selectedCal;
 		public String[] SelectedCal {

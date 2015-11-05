@@ -21,16 +21,7 @@ namespace Tconnect
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
-			if (!IsLoggedIn) {
-				var database = new NoteDatabase ();
-				if (database.HasToken ("Yammer")) {
-					var t = database.GetToken ("Yammer");
-					if (t != null) {
-						_Token = t.Value;
-					}
-					Debug.WriteLine (_Token);
-				}
-			}
+			dochecks();
 		}
 
 		protected override void OnSleep ()
@@ -41,6 +32,11 @@ namespace Tconnect
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
+			dochecks();
+		}
+
+		private void dochecks(){
+			//Login
 			if (!IsLoggedIn) {
 				var database = new NoteDatabase ();
 				if (database.HasToken ("Yammer")) {
@@ -48,8 +44,11 @@ namespace Tconnect
 					if (t != null) {
 						_Token = t.Value;
 					}
+					Debug.WriteLine (_Token);
 				}
 			}
+
+			MyCalendar.ImportCalendar ();
 		}
 
 		private static ViewModelLocator _locator;
@@ -109,6 +108,7 @@ namespace Tconnect
 			var database = new NoteDatabase ();
 			database.InsertOrUpdateToken(new Tconnect.Data.Token("Yammer",token));
 			database.InsertOrUpdateToken(new Tconnect.Data.Token("Calendar","1"));
+			MyCalendar.ImportContacts ();
 		}
 
 		public static Action SuccessfulLoginAction
