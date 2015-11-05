@@ -14,7 +14,7 @@ namespace Tconnect.Data
 		public string LocationText { get; set; }
 		public string NoteDetail { get; set; }
 		public string Attendees { get; set; }
-		public int CalId { get; set;}
+		public long CalId { get; set;}
 
 		public Note(){
 		}

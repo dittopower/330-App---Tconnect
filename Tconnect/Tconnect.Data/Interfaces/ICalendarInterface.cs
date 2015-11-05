@@ -9,7 +9,7 @@ namespace Tconnect.Data
 
 		List<String[]> getCalendars();
 
-		void addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID);
+		long addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID);
 
 		List<String[]> contactRequest (String token);
 	}

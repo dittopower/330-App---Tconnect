@@ -110,7 +110,7 @@ namespace Tconnect.Droid
 
 		}
 			
-		public void addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){
+		public long addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){
 
 			ContentResolver contentResolver = Forms.Context.ApplicationContext.ContentResolver;
 
@@ -129,15 +129,30 @@ namespace Tconnect.Droid
 
 			calEvent.Put(CalendarContract.Events.InterfaceConsts.Dtstart, time);
 			calEvent.Put(CalendarContract.Events.InterfaceConsts.Dtend, timeend);
+			//CalendarContract.Events.InterfaceConsts.Id
 
 			calEvent.Put(CalendarContract.Events.InterfaceConsts.Description, desc);
 			calEvent.Put(CalendarContract.Events.InterfaceConsts.EventLocation, loc);
 			calEvent.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "AEST");//fuck timezones, who even needs them
 
+			long newid = getNewEventId ();
+			calEvent.Put(CalendarContract.Events.InterfaceConsts.Id, newid);
+
 			Forms.Context.ApplicationContext.ContentResolver.Insert(CalendarContract.Events.ContentUri, calEvent);
 
+			return newid;
 			//Console.WriteLine ("EVENT ADDED TO PHONE MAYBE");
 
+		}
+
+		public static long getNewEventId(){  
+			ICursor cursor = Forms.Context.ApplicationContext.ContentResolver.Query (CalendarContract.Events.ContentUri, new String [] {"MAX(_id) as max_id"}, null, null, "_id");
+			cursor.MoveToFirst ();
+			long max_val = cursor.GetLong(cursor.GetColumnIndex("max_id"));
+
+			cursor.Close();
+
+			return max_val+1;
 		}
 
 		public List<String[]> contactRequest(String token){/* stops working after the first 10 because REST api limit */

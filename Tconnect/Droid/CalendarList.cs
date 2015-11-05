@@ -46,8 +46,8 @@ namespace Tconnect.Droid
 			return calendar.getCalendars();
 		}
 
-		public void addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){
-			calendar.addToSystemCal(dstart, title, desc, loc, calID);
+		public long addToSystemCal(DateTime dstart, String title, String desc, String loc, int calID){
+			return calendar.addToSystemCal(dstart, title, desc, loc, calID);
 		}
 
 		public List<String[]> contactRequest (String token){
