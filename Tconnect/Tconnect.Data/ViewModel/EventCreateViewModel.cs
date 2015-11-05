@@ -82,7 +82,7 @@ namespace Tconnect.Data
 				RaisePropertyChanged(() => NoteLocationText);
 				RaisePropertyChanged(() => NoteTime);
 				RaisePropertyChanged(() => NoteDate);
-				RaisePropertyChanged(() => PeopleView);
+				//RaisePropertyChanged(() => PeopleView);
 				RaisePropertyChanged(() => People);
 			}
 		}
